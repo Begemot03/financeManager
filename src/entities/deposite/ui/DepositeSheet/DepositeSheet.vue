@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { computed } from 'vue';
-import { useDepositeStore } from '../../model';
-import { CurrencyIcon } from '@/shared/lib/currency';
+import { depositeModel } from '../../model';
+import { currencyIcon } from '@/shared/lib/currency';
 
-const depositeStore = useDepositeStore();
+const depositeStore = depositeModel();
 const deposites = computed(() => depositeStore.deposites);
 
 </script>
@@ -27,7 +27,7 @@ const deposites = computed(() => depositeStore.deposites);
             >
                 <template #append>
                     <div>{{ startBalance }}</div>
-                    <v-icon :icon="CurrencyIcon[currency]" end />
+                    <v-icon :icon="currencyIcon[currency]" end />
                 </template>
             </v-list-item>
         </v-list>

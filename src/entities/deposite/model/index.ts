@@ -1,8 +1,8 @@
-export { useDepositeStore } from "./depositeStore";
+export { useDepositeStore as depositeModel } from "./deposite";
 
 export enum DepositeType {
     Cash = "Наличные",
     CreditCard = "Кредитка",
 };
 
-export type { IDeposite } from "./types";
+export type { Deposite } from "./types";

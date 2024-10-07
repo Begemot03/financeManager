@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue';
 import { OperationType, useOperationStore } from '../../model';
-import { CurrencyIcon } from '@/shared/lib/currency';
+import { currencyIcon } from '@/shared/lib/currency';
 
 const operationStore = useOperationStore();
 const operations = computed(() => operationStore.operations);
@@ -23,7 +23,7 @@ const operations = computed(() => operationStore.operations);
             >
                 <template #append>
                     <div>{{ sum }}</div>
-                    <v-icon :icon="CurrencyIcon[currency]" />
+                    <v-icon :icon="currencyIcon[currency]" />
                 </template>
             </v-list-item>
         </v-list>

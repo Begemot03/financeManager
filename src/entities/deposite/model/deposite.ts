@@ -1,13 +1,14 @@
 import { defineStore } from "pinia";
 import { computed, ref } from "vue";
-import type { IDeposite } from "./types";
+import type { Deposite } from "./types";
 import { useOperationStore } from "@/entities/operation/model";
 import { uuid } from "@/shared/lib/uuid";
 import { Currency } from "@/shared/lib/currency";
 import { DepositeType } from ".";
+import { notify } from "@/shared/ui/notification";
 
-export const useDepositeStore = defineStore("depositeStore", () => {
-    const deposites = ref<IDeposite[]>([{
+export const useDepositeStore = defineStore("deposite", () => {
+    const deposites = ref<Deposite[]>([{
             id: uuid(),
             name: "Под подушкой",
             type: DepositeType.Cash,
@@ -48,7 +49,7 @@ export const useDepositeStore = defineStore("depositeStore", () => {
         };
     });
 
-    function addDeposite({name, type, startBalance, comment, currency } : IDeposite) {
+    function addDeposite({name, type, startBalance, comment, currency } : Deposite) {
         deposites.value.push({
             id: uuid(),
             name: name,
@@ -57,6 +58,8 @@ export const useDepositeStore = defineStore("depositeStore", () => {
             comment,
             currency,
         });
+
+        notify({ title: "Успех!", subtitle: "Новый счет был создан без проблем.", type: "success" });
     }
 
     return { deposites, depositeBalance, addDeposite, };

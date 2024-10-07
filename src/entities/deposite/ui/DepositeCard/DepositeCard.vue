@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { defineProps } from "vue";
-import type { IDeposite } from "@/entities/deposite";
+import type { Deposite } from "@/entities/deposite";
 
 const props = defineProps<{
-    deposite: IDeposite
+    deposite: Deposite
 }>();
 
 </script>

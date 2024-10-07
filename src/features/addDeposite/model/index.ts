@@ -1,1 +1,1 @@
-export { useAddDepositeFeatureStore } from "./addDepositeFeatureStore";
+export { useAddDepositeFeatureStore as addDepositeModel } from "./addDeposite";

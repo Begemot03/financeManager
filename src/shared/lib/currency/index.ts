@@ -6,8 +6,10 @@ export const enum Currency {
     EUR = "EUR",
 };
 
-export const CurrencyIcon = {
+export const currencyIcon = {
     [Currency.RUB]: mdiCurrencyRub,
     [Currency.USD]: mdiCurrencyUsd,
     [Currency.EUR]: mdiCurrencyEur,
 };
+
+export const currencyList = ["RUB", "USD", "EUR"];
