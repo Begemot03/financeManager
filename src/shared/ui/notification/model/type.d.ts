@@ -1,7 +1,8 @@
-export type TNotificationType = "success" | "info" | "warning" | "error";
+export type NotificationType = "success" | "info" | "warning" | "error";
 
-export type TNotification = {
+export type Notification = {
     title: string,
     subtitle: string,
-    type: TNotificationType,
+    type: NotificationType,
+    duration?: number,
 }

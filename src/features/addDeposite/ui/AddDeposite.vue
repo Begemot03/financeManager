@@ -1,19 +1,20 @@
 <script setup lang="ts">
-import { useNotificationStore } from '@/shared/ui/notification';
+import { notify } from '@/shared/ui/notification';
 
-const notificationStore = useNotificationStore();
 
-function notify() {
-    notificationStore.open({
-        title: "Депозит добавлен"
-    });
+function btnHandler() {
+    notify({
+        title: 'Успешная операция',
+        subtitle: 'Депозит добавлен',
+        type: 'info'
+    })
 }
 
 </script>
 
 <template>
     <v-btn
-        @click="notify"
+        @click="btnHandler"
     >
         Добавить
     </v-btn>
