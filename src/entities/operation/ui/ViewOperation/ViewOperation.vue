@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { IOperation } from '../model';
+import type { IOperation } from '../../model';
 
 const props = defineProps<{
     data: IOperation

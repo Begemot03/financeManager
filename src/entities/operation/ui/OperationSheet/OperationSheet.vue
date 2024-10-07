@@ -1,0 +1,35 @@
+<script setup lang="ts">
+import { computed } from 'vue';
+import { OperationType, useOperationStore } from '../../model';
+import { CurrencyIcon } from '@/shared/lib/currency';
+
+const operationStore = useOperationStore();
+const operations = computed(() => operationStore.operations);
+
+</script>
+
+<template>
+    <v-card
+        max-width="600"
+    >
+        <v-list>
+            <v-list-item
+                v-for="{ id, type, sum, currency, category, comment } in operations"
+                :key="id"
+                :title="category"
+                :subtitle="comment"
+                density="compact"
+                :class="type == OperationType.Income ? 'bg-teal' : 'bg-red'"
+            >
+                <template #append>
+                    <div>{{ sum }}</div>
+                    <v-icon :icon="CurrencyIcon[currency]" />
+                </template>
+            </v-list-item>
+        </v-list>
+    </v-card>
+</template>
+
+<style scoped>
+    
+</style>

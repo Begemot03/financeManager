@@ -1,0 +1,13 @@
+import { mdiCurrencyRub, mdiCurrencyUsd, mdiCurrencyEur } from "@mdi/js";
+
+export const enum Currency {
+    RUB = "RUB",
+    USD = "USD",
+    EUR = "EUR",
+};
+
+export const CurrencyIcon = {
+    [Currency.RUB]: mdiCurrencyRub,
+    [Currency.USD]: mdiCurrencyUsd,
+    [Currency.EUR]: mdiCurrencyEur,
+};

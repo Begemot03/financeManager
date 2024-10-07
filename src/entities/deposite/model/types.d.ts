@@ -1,10 +1,11 @@
-export type TDepositeType = "Наличные" | "Карта";
-export type TCurrency = "Рубль" | "Доллар";
+import type { Currency } from "@/shared/lib/currency";
+import { DepositeType } from ".";
 
 export interface IDeposite {
     id: number;
-    type: TDepositeType;
+    name: string,
+    type: DepositeType;
     startBalance: number;
-    currency: TCurrency;
+    currency: Currency;
     comment: string;
 };

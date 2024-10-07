@@ -1,10 +1,14 @@
 <script setup>
+import { DepositeSheet } from '@/entities/deposite';
+import { OperationSheet } from '@/entities/operation';
+import AddDeposite from '@/features/addDeposite/ui/AddDeposite.vue';
+
 </script>
 
 <template>
-    <div>
-        This is Home page
-    </div>
+    <DepositeSheet />
+    <OperationSheet />
+    <AddDeposite />
 </template>
 
 <style scoped>
