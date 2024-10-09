@@ -1,8 +1,4 @@
-export type { IOperation } from "./model";
+export type * from "./model";
+export * from "./ui";
 
-export { useOperationStore } from "./model";
-
-export { 
-    ViewOperation, 
-    OperationSheet 
-} from "./ui";
+export { operationModel } from "./model";

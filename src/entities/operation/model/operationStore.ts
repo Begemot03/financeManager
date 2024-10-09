@@ -1,12 +1,12 @@
 import { computed, ref } from "vue";
-import type { IOperation } from "./types";
+import type { Operation } from "./types";
 import { OperationType } from ".";
 import { defineStore } from "pinia";
 import { uuid } from "@/shared/lib/uuid";
 import { Currency } from "@/shared/lib/currency";
 
 export const useOperationStore = defineStore("operationStore", () => {
-    const operations = ref<IOperation[]>([
+    const operations = ref<Operation[]>([
         {
             depositeId: 0,
             id: uuid(),
@@ -14,7 +14,6 @@ export const useOperationStore = defineStore("operationStore", () => {
             type: OperationType.Income,
             sum: 1000,
             category: "Еда",
-            meta: "Top top",
             comment: "Продал на неделю продуктов"
         }, {
             depositeId: 0,
@@ -23,7 +22,6 @@ export const useOperationStore = defineStore("operationStore", () => {
             type: OperationType.Spending,
             sum: 1000,
             category: "Такси",
-            meta: "Top top",
             comment: "Поехал в питер"
         }, {
             depositeId: 0,
@@ -32,7 +30,6 @@ export const useOperationStore = defineStore("operationStore", () => {
             type: OperationType.Income,
             sum: 1000,
             category: "Электроника",
-            meta: "Top top",
             comment: "Купил комп"
         }, 
     ]);
@@ -43,7 +40,7 @@ export const useOperationStore = defineStore("operationStore", () => {
         }
     });
 
-    function addOperation({ sum, depositeId, type, category, meta, comment } : IOperation) {
+    function addOperation({ sum, depositeId, type, category, comment } : Operation) {
         operations.value.push({
             id: uuid(),
             currency: Currency.RUB,
@@ -51,9 +48,8 @@ export const useOperationStore = defineStore("operationStore", () => {
             depositeId,
             type,
             category,
-            meta,
             comment,
-            date: new Date(),
+            creationDate: new Date(),
         });
     }
 

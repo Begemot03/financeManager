@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { computed } from 'vue';
-import { OperationType, useOperationStore } from '../../model';
+import { OperationType, operationModel } from '../../model';
 import { currencyIcon } from '@/shared/lib/currency';
 
-const operationStore = useOperationStore();
+const operationStore = operationModel();
 const operations = computed(() => operationStore.operations);
 
 </script>

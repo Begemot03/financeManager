@@ -1,7 +1,7 @@
 import { defineStore } from "pinia";
 import { computed, ref } from "vue";
 import type { Deposite } from "./types";
-import { useOperationStore } from "@/entities/operation/model";
+import { operationModel } from "@/entities/operation/model";
 import { uuid } from "@/shared/lib/uuid";
 import { Currency } from "@/shared/lib/currency";
 import { DepositeType } from ".";
@@ -34,7 +34,7 @@ export const useDepositeStore = defineStore("deposite", () => {
 
     const depositeBalance = computed(() => {
         return (depositeId: number) => {
-            const operationStore = useOperationStore();
+            const operationStore = operationModel();
 
             const deposite = deposites.value.find(d => d.id === depositeId);
 

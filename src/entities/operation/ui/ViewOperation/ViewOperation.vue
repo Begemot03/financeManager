@@ -1,19 +1,18 @@
 <script setup lang="ts">
-import type { IOperation } from '../../model';
+import type { Operation } from '../../model';
 
 const props = defineProps<{
-    data: IOperation
+    data: Operation
 }>();
 
 </script>
 
 <template>
     <div>{{ props.data.sum }}</div>
-    <div>{{ props.data.date }}</div>
+    <div>{{ props.data.creationDate }}</div>
     <div>{{ props.data.depositeId }}</div>
     <div>{{ props.data.type }}</div>
     <div>{{ props.data.category }}</div>
-    <div>{{ props.data.meta }}</div>
     <div>{{ props.data.comment }}</div>
 </template>
 

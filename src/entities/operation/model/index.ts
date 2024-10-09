@@ -1,5 +1,5 @@
 export type { 
-    IOperation,
+    Operation,
 } from "./types";
 
 export enum OperationType {
@@ -7,4 +7,4 @@ export enum OperationType {
     Spending = "Расход",
 };
 
-export { useOperationStore } from "./operationStore";
+export { useOperationStore as operationModel } from "./operationStore";
