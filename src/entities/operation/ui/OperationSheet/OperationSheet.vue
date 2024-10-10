@@ -1,10 +1,13 @@
 <script setup lang="ts">
-import { computed } from 'vue';
-import { type OperationType, operationModel } from '../../model';
+import { computed, onMounted } from 'vue';
+import { operationModel } from '../../model';
 import { currencyIcon } from '@/shared/lib/currency';
 
 const operationStore = operationModel();
-const operations = computed(() => operationStore.operations);
+
+onMounted(() => {
+    operationStore.getOperationList();
+});
 
 </script>
 
@@ -14,7 +17,7 @@ const operations = computed(() => operationStore.operations);
     >
         <v-list>
             <v-list-item
-                v-for="{ id, type, sum, currency, category, comment } in operations"
+                v-for="{ id, type, sum, currency, category, comment } in operationStore.operations"
                 :key="id"
                 :title="category"
                 :subtitle="comment"
@@ -26,10 +29,15 @@ const operations = computed(() => operationStore.operations);
                     <v-icon :icon="currencyIcon[currency]" />
                 </template>
             </v-list-item>
+            <v-container 
+                v-if="operationStore.loading" 
+                class="fill-height d-flex align-center justify-center"
+            >
+                <v-progress-circular
+                    indeterminate
+                    color="primary"
+                />
+            </v-container>
         </v-list>
     </v-card>
 </template>
-
-<style scoped>
-    
-</style>

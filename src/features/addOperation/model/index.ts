@@ -1,1 +1,1 @@
-export { useAddOperationFeatureStore as AddOperationModel } from "./addOperation";
+export { useAddOperationFeatureStore as addOperationModel } from "./addOperation";

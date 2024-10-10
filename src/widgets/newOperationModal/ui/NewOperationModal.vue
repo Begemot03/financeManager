@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { BaseModal } from '@/shared/ui/baseModal';
 import { newOperationModalModel } from '../model';
-import { AddOperation, AddOperationModel } from '@/features/addOperation';
+import { AddOperation, addOperationModel } from '@/features/addOperation';
 
 const newOperationModalStore = newOperationModalModel();
-const addOperationStore = AddOperationModel();
+const addOperationStore = addOperationModel();
 
 </script>
 

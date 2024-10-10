@@ -1,22 +1,12 @@
 import { computed, ref } from "vue";
 import type { Operation, OperationType } from "./types";
 import { defineStore } from "pinia";
-import { uuid } from "@/shared/lib/uuid";
 import { Currency } from "@/shared/lib/currency";
+import { testFetching } from "@/shared/api";
 
 export const useOperationStore = defineStore("operationStore", () => {
-    const operations = ref<Operation[]>([
-        {
-            depositeId: 0,
-            name: "Купил самокат",
-            id: uuid(),
-            currency: Currency.RUB,
-            type: "Доход",
-            sum: 1000,
-            category: "Еда",
-            comment: "Продал на неделю продуктов"
-        },
-    ]);
+    const operations = ref<Operation[]>([]);
+    const loading = ref(false);
 
     const depositeOperations = computed(() => {
         return (depositeId: number) => {
@@ -24,8 +14,21 @@ export const useOperationStore = defineStore("operationStore", () => {
         }
     });
 
+    async function getOperationList() {
+        try {
+            loading.value = true;
+            await testFetching(1500);
+        } catch(e) {
+            console.log(`Ошибка при получении списка операций: ${e}`)
+        } finally {
+            loading.value = false;
+        }
+    }
+
     return { 
-        operations, 
+        operations,
+        loading,
         depositeOperations, 
+        getOperationList,
     };
 })

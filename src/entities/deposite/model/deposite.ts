@@ -2,33 +2,12 @@ import { defineStore } from "pinia";
 import { computed, ref } from "vue";
 import type { Deposite, DepositeType } from "./types";
 import { operationModel } from "@/entities/operation/model";
-import { uuid } from "@/shared/lib/uuid";
 import { Currency } from "@/shared/lib/currency";
+import { testFetching } from "@/shared/api";
 
 export const useDepositeStore = defineStore("deposite", () => {
-    const deposites = ref<Deposite[]>([{
-            id: uuid(),
-            name: "Под подушкой",
-            type: "Кредитка",
-            startBalance: 10000,
-            comment: "Личные сбережения",
-            currency: Currency.RUB
-        }, {
-            id: uuid(),
-            name: "Тиньк зп",
-            type: "Кредитка",
-            startBalance: 5000,
-            comment: "Зарплатная карта",
-            currency: Currency.EUR
-        }, {
-            id: uuid(),
-            name: "Альфа сбер счет",
-            type: "Кредитка",
-            startBalance: 20000,
-            comment: "Карта для покупок",
-            currency: Currency.USD
-        }
-    ]);
+    const deposites = ref<Deposite[]>([]);
+    const loading = ref(false);
 
     const depositeBalance = computed(() => {
         return (depositeId: number) => {
@@ -47,8 +26,21 @@ export const useDepositeStore = defineStore("deposite", () => {
         };
     });
 
+    async function getDepositeList() {
+        try {
+            loading.value = true;
+            await testFetching(1500);
+        } catch(e) {
+            console.log(`Ошибка при получении списка счетов: ${e}`)
+        } finally {
+            loading.value = false;
+        }
+    }
+
     return { 
-        deposites, 
+        deposites,
+        loading,
         depositeBalance, 
+        getDepositeList,
     };
 });

@@ -1,10 +1,13 @@
 <script setup lang="ts">
-import { ref } from 'vue';
+import { addOperationModel } from '../model';
 
+const addOperationStore = addOperationModel();
 </script>
 
 <template>
-    <v-btn>
+    <v-btn
+        :loading="addOperationStore.loading"
+    >
         <slot></slot>
     </v-btn>
 </template>

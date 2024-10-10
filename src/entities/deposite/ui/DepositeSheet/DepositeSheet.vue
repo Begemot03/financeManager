@@ -1,10 +1,14 @@
 <script setup lang="ts">
-import { computed } from 'vue';
+import { onMounted } from 'vue';
 import { depositeModel } from '../../model';
 import { currencyIcon } from '@/shared/lib/currency';
 
 const depositeStore = depositeModel();
-const deposites = computed(() => depositeStore.deposites);
+
+
+onMounted(() => {
+    depositeStore.getDepositeList();
+})
 
 </script>
 
@@ -16,20 +20,27 @@ const deposites = computed(() => depositeStore.deposites);
             title="Депозиты"
         />
         <v-list 
-            lines="two"
-            rounded
         >
             <v-list-item
-                v-for="{ name, comment, startBalance, currency } in deposites"
-                :title="name"
-                :subtitle="comment"
-                density="compact"
-            >
-                <template #append>
-                    <div>{{ startBalance }}</div>
-                    <v-icon :icon="currencyIcon[currency]" end />
-                </template>
+                    v-for="{ name, comment, startBalance, currency } in depositeStore.deposites"
+                    :title="name"
+                    :subtitle="comment"
+                    density="compact"
+                >
+                    <template #append>
+                        <div>{{ startBalance }}</div>
+                        <v-icon :icon="currencyIcon[currency]" end />
+                    </template>
             </v-list-item>
+            <v-container 
+                v-if="depositeStore.loading" 
+                class="fill-height d-flex align-center justify-center"
+            >
+                <v-progress-circular
+                    indeterminate
+                    color="primary"
+                />
+            </v-container>
         </v-list>
     </v-card>
 </template>
