@@ -1,22 +1,38 @@
-import type { Operation } from "@/entities/operation";
-import { OperationType } from "@/entities/operation/model";
+import { operationModel, type Operation, type OperationType } from "@/entities/operation";
 import { Currency } from "@/shared/lib/currency";
 import { uuid } from "@/shared/lib/uuid";
+import { newOperationModalModel } from "@/widgets/newOperationModal";
 import { defineStore } from "pinia";
-import { reactive } from "vue";
 
 export const useAddOperationFeatureStore = defineStore("addOperation", () => {
-    const operation = reactive<Operation>({
-        id: uuid(),
-        depositeId: 0,
-        type: OperationType.Income,
-        sum: 0,
-        currency: Currency.RUB,
-        category: "",
-        comment: "",
-    });
+    const operationStore = operationModel();
+    const newOperationModalStore = newOperationModalModel();
+
+    function addOperation(newOperation: Operation) {
+        operationStore.operations.push({
+            id: uuid(),
+            name: newOperation.name,
+            sum: newOperation.sum,
+            type: newOperation.type,
+            depositeId: newOperation.depositeId,
+            category: newOperation.category,
+            comment: newOperation.comment,
+            currency: newOperation.currency,
+        });
+
+        newOperationModalStore.newOperation = {
+            id: 0,
+            name: "",
+            depositeId: 0,
+            type: "Доход",
+            sum: 0,
+            currency: Currency.RUB,
+            category: "",
+            comment: ""
+        };
+    }
 
     return {
-        operation,
+        addOperation,
     };
 });

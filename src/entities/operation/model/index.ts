@@ -1,10 +1,3 @@
-export type { 
-    Operation,
-} from "./types";
+export type * from "./types";
 
-export enum OperationType {
-    Income = "Доход",
-    Spending = "Расход",
-};
-
-export { useOperationStore as operationModel } from "./operationStore";
+export { useOperationStore as operationModel } from "./operation";

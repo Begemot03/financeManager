@@ -1,31 +1,31 @@
 import { defineStore } from "pinia";
 import { computed, ref } from "vue";
-import type { Deposite } from "./types";
+import type { Deposite, DepositeType } from "./types";
 import { operationModel } from "@/entities/operation/model";
 import { uuid } from "@/shared/lib/uuid";
 import { Currency } from "@/shared/lib/currency";
-import { DepositeType } from ".";
+import {  } from ".";
 import { notify } from "@/shared/ui/notification";
 
 export const useDepositeStore = defineStore("deposite", () => {
     const deposites = ref<Deposite[]>([{
             id: uuid(),
             name: "Под подушкой",
-            type: DepositeType.Cash,
+            type: "Кредитка",
             startBalance: 10000,
             comment: "Личные сбережения",
             currency: Currency.RUB
         }, {
             id: uuid(),
             name: "Тиньк зп",
-            type: DepositeType.Cash,
+            type: "Кредитка",
             startBalance: 5000,
             comment: "Зарплатная карта",
             currency: Currency.EUR
         }, {
             id: uuid(),
             name: "Альфа сбер счет",
-            type: DepositeType.Cash,
+            type: "Кредитка",
             startBalance: 20000,
             comment: "Карта для покупок",
             currency: Currency.USD

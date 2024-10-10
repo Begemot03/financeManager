@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue';
-import { OperationType, operationModel } from '../../model';
+import { type OperationType, operationModel } from '../../model';
 import { currencyIcon } from '@/shared/lib/currency';
 
 const operationStore = operationModel();
@@ -19,7 +19,7 @@ const operations = computed(() => operationStore.operations);
                 :title="category"
                 :subtitle="comment"
                 density="compact"
-                :class="type == OperationType.Income ? 'bg-teal' : 'bg-red'"
+                :class="type == 'Доход' ? 'bg-teal' : 'bg-red'"
             >
                 <template #append>
                     <div>{{ sum }}</div>

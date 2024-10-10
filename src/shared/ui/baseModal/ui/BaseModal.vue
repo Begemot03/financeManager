@@ -19,16 +19,6 @@ const emit = defineEmits(["update:visible"])
         <template #activator>
             <slot name="activator"></slot>
         </template>
-        <v-card
-            :title="title"
-        >
-            <v-card-text>
-                <slot></slot>
-            </v-card-text>
-            <v-card-actions>
-                <slot name="actions"></slot>
-            </v-card-actions>
-        </v-card>
-        
+        <slot></slot>
     </v-dialog>
 </template>

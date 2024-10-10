@@ -1,9 +1,11 @@
 import type { Currency } from "@/shared/lib/currency";
-import { OperationType } from ".";
 
-export interface Operation {
+export type OperationType = "Доход" | "Расход";
+
+export type Operation = {
     id: number;
     depositeId: number;
+    name: string;
     type: OperationType;
     sum: number;
     currency: Currency;

@@ -1,7 +1,8 @@
 import type { Currency } from "@/shared/lib/currency";
-import { DepositeType } from ".";
 
-export interface Deposite {
+export type DepositeType = "Наличные" | "Кредитка";
+
+export type Deposite = {
     id: number;
     name: string,
     type: DepositeType;
