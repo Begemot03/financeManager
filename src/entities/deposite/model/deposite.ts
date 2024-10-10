@@ -4,8 +4,6 @@ import type { Deposite, DepositeType } from "./types";
 import { operationModel } from "@/entities/operation/model";
 import { uuid } from "@/shared/lib/uuid";
 import { Currency } from "@/shared/lib/currency";
-import {  } from ".";
-import { notify } from "@/shared/ui/notification";
 
 export const useDepositeStore = defineStore("deposite", () => {
     const deposites = ref<Deposite[]>([{
@@ -49,18 +47,8 @@ export const useDepositeStore = defineStore("deposite", () => {
         };
     });
 
-    function addDeposite({name, type, startBalance, comment, currency } : Deposite) {
-        deposites.value.push({
-            id: uuid(),
-            name: name,
-            type,
-            startBalance,
-            comment,
-            currency,
-        });
-
-        notify({ title: "Успех!", subtitle: "Новый счет был создан без проблем.", type: "success" });
-    }
-
-    return { deposites, depositeBalance, addDeposite, };
+    return { 
+        deposites, 
+        depositeBalance, 
+    };
 });

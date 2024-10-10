@@ -33,7 +33,3 @@ const deposites = computed(() => depositeStore.deposites);
         </v-list>
     </v-card>
 </template>
-
-<style scoped>
-    
-</style>

@@ -17,13 +17,7 @@ const addOperationStore = AddOperationModel();
         <template #activator>
             <v-btn
                 @click="newOperationModalStore.open"
-                text="Открыть"
-            ></v-btn>
-        </template>
-        <template #actions>
-            <v-btn
-                @click="newOperationModalStore.close"
-                text="Закрыть"
+                text="Новая операция"
             ></v-btn>
         </template>
         <v-form>

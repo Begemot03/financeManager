@@ -1,8 +1,7 @@
 <script setup>
 import { DepositeSheet } from '@/entities/deposite';
 import { OperationSheet } from '@/entities/operation';
-import { AddDeposite } from '@/features/addDeposite';
-import { AddOperation } from "@/features/addOperation";
+import NewDepositeModal from '@/widgets/newDepositeModal/ui/NewDepositeModal.vue';
 import { NewOperationModal } from '@/widgets/newOperationModal';
 
 </script>
@@ -10,10 +9,6 @@ import { NewOperationModal } from '@/widgets/newOperationModal';
 <template>
     <DepositeSheet />
     <OperationSheet />
-    <AddDeposite />
+    <NewDepositeModal />
     <NewOperationModal />
 </template>
-
-<style scoped>
-
-</style>

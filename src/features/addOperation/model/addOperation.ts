@@ -1,5 +1,4 @@
 import { operationModel, type Operation, type OperationType } from "@/entities/operation";
-import { Currency } from "@/shared/lib/currency";
 import { uuid } from "@/shared/lib/uuid";
 import { newOperationModalModel } from "@/widgets/newOperationModal";
 import { defineStore } from "pinia";
@@ -20,16 +19,7 @@ export const useAddOperationFeatureStore = defineStore("addOperation", () => {
             currency: newOperation.currency,
         });
 
-        newOperationModalStore.newOperation = {
-            id: 0,
-            name: "",
-            depositeId: 0,
-            type: "Доход",
-            sum: 0,
-            currency: Currency.RUB,
-            category: "",
-            comment: ""
-        };
+        newOperationModalStore.reset();
     }
 
     return {

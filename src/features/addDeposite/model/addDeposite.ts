@@ -1,28 +1,23 @@
-import type { DepositeType, Deposite } from "@/entities/deposite";
-import { Currency } from "@/shared/lib/currency";
+import { type Deposite, depositeModel } from "@/entities/deposite";
+import { uuid } from "@/shared/lib/uuid";
+import { newDepositeModalModel } from "@/widgets/newDepositeModal";
 import { defineStore } from "pinia";
-import { reactive } from "vue";
+
 
 export const useAddDepositeFeatureStore = defineStore("addDeposite", () => {
-    const deposite = reactive<Deposite>({
-        id: 0,
-        name: "",
-        type: "Наличные",
-        startBalance: 0,
-        currency: Currency.RUB,
-        comment: ""
-    });
+    const depositeStore = depositeModel();
+    const newDepositeModalStore = newDepositeModalModel();
 
-    function reset() {
-        deposite.comment = "";
-        deposite.name = "";
-        deposite.startBalance = 0;
-        deposite.currency = Currency.RUB;
-        deposite.type = "Наличные";
+    function addDeposite(newDeposite: Deposite) {
+        depositeStore.deposites.push({
+            ...newDeposite,
+            id: uuid(),
+        });
+        
+        newDepositeModalStore.reset();
     }
 
     return {
-        deposite,
-        reset,
+        addDeposite,
     };
 });

@@ -14,7 +14,3 @@ const props = defineProps<{
         <v-card-subtitle>{{ props.deposite.comment }}</v-card-subtitle>
     </v-card>
 </template>
-
-<style scoped>
-    
-</style>
