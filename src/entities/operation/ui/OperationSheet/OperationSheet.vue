@@ -13,8 +13,11 @@ onMounted(() => {
 
 <template>
     <v-card
-        max-width="600"
+        max-width="400"
     >
+        <v-toolbar
+            title="Операции"
+        />
         <v-list>
             <v-list-item
                 v-for="{ id, type, sum, currency, category, comment } in operationStore.operations"
