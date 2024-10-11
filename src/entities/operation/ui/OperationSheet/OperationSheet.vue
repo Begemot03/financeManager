@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, onMounted } from 'vue';
+import { onMounted } from 'vue';
 import { operationModel } from '../../model';
 import { currencyIcon } from '@/shared/lib/currency';
 

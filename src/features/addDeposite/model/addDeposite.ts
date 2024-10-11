@@ -8,24 +8,20 @@ import { ref } from "vue";
 
 export const useAddDepositeStore = defineStore("addDeposite", () => {
     const depositeStore = depositeModel();
-    const newDepositeModalStore = newDepositeModalModel();
-
     const loading = ref(false);
 
     async function addDeposite(newDeposite: Deposite) {
-        const data = { ...newDeposite };
         try {
             loading.value = true;
             await testFetching(1500);
             await depositeStore.getDepositeList();
 
             depositeStore.deposites.push({
-                ...data,
+                ...newDeposite,
                 id: uuid(),
             });
-            newDepositeModalStore.reset();
         } catch(e) {
-            console.log(`Ошибка при добавлении депозите: {e}`);
+            console.log(`Ошибка при добавлении депозите: ${e}`);
         } finally {
             loading.value = false;
         }

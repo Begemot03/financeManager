@@ -2,19 +2,16 @@
 import { BaseModal } from '@/shared/ui/baseModal';
 import { newDepositeModalModel } from '../model';
 import { AddDeposite, addDepositeModel } from '@/features/addDeposite';
+import type { Deposite } from '@/entities/deposite';
 
 const addDepositeStore = addDepositeModel();
 const newDepositeModalStore = newDepositeModalModel();
 
-const requiredInputRule: Array<(v: any) => boolean | string> = [
-    v => (!!v && v.length > 0) || "Обязательное поле",
-];
-
-const startBalanceValidateRule: Array<(v: any) => boolean | string> = [
-    ...requiredInputRule,
-    v => (v >= 0) || "Начальный баланс не может быть отрицательным числом",
-];
-
+const submit = newDepositeModalStore.handleSubmit(async (values) => {
+    await addDepositeStore.addDeposite(values as Deposite);
+    newDepositeModalStore.handleReset();
+    newDepositeModalStore.close();
+});
 </script>
 
 <template>
@@ -31,7 +28,7 @@ const startBalanceValidateRule: Array<(v: any) => boolean | string> = [
         </template>
         <v-form
             ref="form"
-            @submit.prevent
+            @submit.prevent="submit"
         >
             <v-card
                 title="Новый счет"
@@ -39,44 +36,45 @@ const startBalanceValidateRule: Array<(v: any) => boolean | string> = [
             >
                 <v-card-text>
                     <v-row dense>
-                        <v-col
-                            cols="12"
-                        >
+                        <v-col cols="12">
                             <v-text-field
+                                v-model="newDepositeModalStore.name.value"
+                                :error-messages="newDepositeModalStore.name.errorMessage"
                                 label="Название счета"
-                                v-model="newDepositeModalStore.newDeposite.name"
                                 variant="outlined"
-                                :rules="requiredInputRule"
-                                ></v-text-field>
+                            ></v-text-field>
                         </v-col>
-                        <v-col
-                            cols="8"
-                        >
+                        <v-col cols="8">
                             <v-text-field
+                                v-model="newDepositeModalStore.startBalance.value"
+                                :error-messages="newDepositeModalStore.startBalance.errorMessage"
                                 label="Начальный баланс"
-                                v-model="newDepositeModalStore.newDeposite.startBalance"
                                 variant="outlined"
-                                :rules="startBalanceValidateRule"
-                                ></v-text-field>
+                            ></v-text-field>
                         </v-col>
-                        <v-col
-                            cols="4"
-                        >
+                        <v-col cols="4">
                             <v-select
+                                v-model="newDepositeModalStore.currency.value as string"
+                                :error-messages="newDepositeModalStore.currency.errorMessage"
+                                :items="['RUB', 'USD']"
                                 label="Валюта"
                                 variant="outlined"
-                                :items="['RUB', 'USD']"
-                                v-model="newDepositeModalStore.newDeposite.currency"
-                                :rules="requiredInputRule"
-                                ></v-select>
+                            ></v-select>
                         </v-col>
-                        <v-col
-                            cols="12"
-                        >
+                        <v-col cols="12">
+                            <v-select
+                                v-model="newDepositeModalStore.type.value as string"
+                                :error-messages="newDepositeModalStore.type.errorMessage"
+                                :items="['Наличные', 'Кредитка']"
+                                label="Тип счета"
+                                variant="outlined"
+                            ></v-select>
+                        </v-col>
+                        <v-col cols="12">
                             <v-textarea
+                                v-model="newDepositeModalStore.comment.value"
                                 label="Комментарий"
                                 variant="outlined"
-                                v-model="newDepositeModalStore.newDeposite.comment"
                             ></v-textarea>
                         </v-col>
                     </v-row>
@@ -86,7 +84,6 @@ const startBalanceValidateRule: Array<(v: any) => boolean | string> = [
                         variant="tonal"
                         color="blue"
                         type="submit"
-                        @click="addDepositeStore.addDeposite(newDepositeModalStore.newDeposite)"
                     >Добавить</AddDeposite>
                     <v-btn
                         text="Отмена"

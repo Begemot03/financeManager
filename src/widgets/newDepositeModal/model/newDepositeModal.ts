@@ -1,17 +1,42 @@
-import type { Deposite } from "@/entities/deposite";
 import { Currency } from "@/shared/lib/currency";
 import { defineStore } from "pinia";
-import { reactive, ref } from "vue";
+import { useField, useForm } from "vee-validate";
+import { ref } from "vue";
 
 export const useNewDepositeModal = defineStore("newDepositeModal", () => {
-    const newDeposite = reactive<Deposite>({
-        id: 0,
-        name: "",
-        type: "Наличные",
-        startBalance: 0,
-        currency: Currency.RUB,
-        comment: ""
+    const { handleSubmit, handleReset } = useForm({
+        initialValues: {
+            name: "",
+            type: "Наличные",
+            startBalance: 0,
+            currency: Currency.RUB,
+            comment: "",
+        },
+        validationSchema: {
+            name (value: string) {
+                if (value) return true;
+                return "Выберите имя счета.";
+            },
+            type (value: string) {
+                if(value === "Наличные" || value === "Кредитка") return true;
+                return "Выберите тип счета";
+            },
+            startBalance (value: number) {
+                if (value >= 0) return true;
+                return "Начальный баланс не может быть отрицательным.";
+            },
+            currency (value: string) {
+                if (value === Currency.RUB || value === Currency.USD) return true;
+                return "Выберите валюту из списка.";
+            },
+        },
     });
+
+    const name = useField("name");
+    const type = useField("type");
+    const startBalance = useField("startBalance");
+    const currency = useField("currency");
+    const comment = useField("comment");
 
     const visible = ref(false);
 
@@ -23,19 +48,16 @@ export const useNewDepositeModal = defineStore("newDepositeModal", () => {
         visible.value = false;
     }
 
-    function reset() {
-        newDeposite.comment = "";
-        newDeposite.name = "";
-        newDeposite.startBalance = 0;
-        newDeposite.currency = Currency.RUB;
-        newDeposite.type = "Наличные";
-    }
-
     return {
-        newDeposite,
+        name,
+        type,
+        startBalance,
+        currency,
+        comment,
+        handleSubmit,
+        handleReset,
         visible,
         open,
         close,
-        reset,
-    }
+    };
 });
