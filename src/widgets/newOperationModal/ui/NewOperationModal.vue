@@ -2,9 +2,17 @@
 import { BaseModal } from '@/shared/ui/baseModal';
 import { newOperationModalModel } from '../model';
 import { AddOperation, addOperationModel } from '@/features/addOperation';
+import type { Operation } from '@/entities/operation';
 
 const newOperationModalStore = newOperationModalModel();
 const addOperationStore = addOperationModel();
+
+const submit = newOperationModalStore.handleSubmit(async (values) => {
+    console.log(1)
+    await addOperationStore.addOperation(values as Operation);
+    newOperationModalStore.handleReset();
+    newOperationModalStore.close();
+});
 
 </script>
 
@@ -20,7 +28,9 @@ const addOperationStore = addOperationModel();
                 text="Новая операция"
             ></v-btn>
         </template>
-        <v-form>
+        <v-form
+            @submit.prevent="submit"
+        >
             <v-card
                 title="Новая операция"
             >
@@ -30,7 +40,8 @@ const addOperationStore = addOperationModel();
                             cols="12"
                         >
                             <v-text-field
-                                v-model.trim="newOperationModalStore.newOperation.name"
+                                v-model.trim="newOperationModalStore.name.value"
+                                :error-messages="newOperationModalStore.name.errorMessage"
                                 label="Название операции"
                                 variant="outlined"
                                 ></v-text-field>
@@ -39,7 +50,8 @@ const addOperationStore = addOperationModel();
                             cols="6"
                         >
                             <v-text-field
-                                v-model.number="newOperationModalStore.newOperation.sum"
+                                v-model.number="newOperationModalStore.sum.value"
+                                :error-messages="newOperationModalStore.sum.errorMessage"
                                 label="Сумма операции"
                                 variant="outlined"
                                 ></v-text-field>
@@ -48,7 +60,8 @@ const addOperationStore = addOperationModel();
                             cols="6"
                         >
                             <v-select
-                                v-model="newOperationModalStore.newOperation.depositeId"
+                                v-model="newOperationModalStore.depositeId.value"
+                                :error-messages="newOperationModalStore.depositeId.errorMessage"
                                 label="Счет списания"
                                 variant="outlined"
                                 :items="newOperationModalStore.listOfDeposites"
@@ -60,7 +73,8 @@ const addOperationStore = addOperationModel();
                             cols="4"
                         >
                             <v-select
-                                v-model="newOperationModalStore.newOperation.currency"
+                                v-model="newOperationModalStore.currency.value"
+                                :error-messages="newOperationModalStore.currency.errorMessage"
                                 label="Валюта"
                                 variant="outlined"
                                 :items="['RUB', 'USD']"
@@ -70,7 +84,8 @@ const addOperationStore = addOperationModel();
                             cols="4"
                         >
                             <v-select
-                                v-model="newOperationModalStore.newOperation.type"
+                                v-model="newOperationModalStore.type.value"
+                                :error-messages="newOperationModalStore.type.errorMessage"
                                 label="Тип операции"
                                 variant="outlined"
                                 :items="['Доход', 'Расход']"
@@ -80,7 +95,8 @@ const addOperationStore = addOperationModel();
                             cols="4"
                         >
                             <v-select
-                                v-model="newOperationModalStore.newOperation.category"
+                                v-model="newOperationModalStore.category.value"
+                                :error-messages="newOperationModalStore.category.errorMessage"
                                 label="Категория"
                                 variant="outlined"
                                 :items="['Еда', 'Развлечения']"
@@ -90,7 +106,7 @@ const addOperationStore = addOperationModel();
                             cols="12"
                         >
                             <v-textarea
-                                v-model="newOperationModalStore.newOperation.comment"
+                                v-model.trim="newOperationModalStore.comment.value"
                                 label="Комментарий"
                                 variant="outlined"
                             ></v-textarea>
@@ -99,9 +115,9 @@ const addOperationStore = addOperationModel();
                 </v-card-text>
                 <v-card-actions>
                     <AddOperation
-                        @click="addOperationStore.addOperation(newOperationModalStore.newOperation)"
                         variant="tonal"
                         color="blue"
+                        type="submit"
                     >Добавить</AddOperation>
                     <v-btn
                         @click="newOperationModalStore.close"

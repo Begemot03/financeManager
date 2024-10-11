@@ -1,14 +1,11 @@
 import { operationModel, type Operation, type OperationType } from "@/entities/operation";
 import { testFetching } from "@/shared/api";
 import { uuid } from "@/shared/lib/uuid";
-import { newOperationModalModel } from "@/widgets/newOperationModal";
 import { defineStore } from "pinia";
 import { ref } from "vue";
 
 export const useAddOperationFeatureStore = defineStore("addOperation", () => {
     const operationStore = operationModel();
-    const newOperationModalStore = newOperationModalModel();
-
     const loading = ref(false);
 
     async function addOperation(newOperation: Operation) {
@@ -29,7 +26,6 @@ export const useAddOperationFeatureStore = defineStore("addOperation", () => {
                 comment: data.comment,
                 currency: data.currency,
             });
-            newOperationModalStore.reset();
         } catch(e) {
            console.log(`Произошла ошибка при добавлении операции ${e}`)
         } finally {

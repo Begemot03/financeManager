@@ -32,11 +32,11 @@ export const useNewDepositeModal = defineStore("newDepositeModal", () => {
         },
     });
 
-    const name = useField("name");
-    const type = useField("type");
-    const startBalance = useField("startBalance");
-    const currency = useField("currency");
-    const comment = useField("comment");
+    const name = useField<string>("name");
+    const type = useField<string>("type");
+    const startBalance = useField<number>("startBalance");
+    const currency = useField<string>("currency");
+    const comment = useField<string>("comment");
 
     const visible = ref(false);
 

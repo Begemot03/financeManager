@@ -27,7 +27,6 @@ const submit = newDepositeModalStore.handleSubmit(async (values) => {
             ></v-btn>
         </template>
         <v-form
-            ref="form"
             @submit.prevent="submit"
         >
             <v-card
@@ -38,7 +37,7 @@ const submit = newDepositeModalStore.handleSubmit(async (values) => {
                     <v-row dense>
                         <v-col cols="12">
                             <v-text-field
-                                v-model="newDepositeModalStore.name.value"
+                                v-model.trim="newDepositeModalStore.name.value"
                                 :error-messages="newDepositeModalStore.name.errorMessage"
                                 label="Название счета"
                                 variant="outlined"
@@ -46,7 +45,7 @@ const submit = newDepositeModalStore.handleSubmit(async (values) => {
                         </v-col>
                         <v-col cols="8">
                             <v-text-field
-                                v-model="newDepositeModalStore.startBalance.value"
+                                v-model.number="newDepositeModalStore.startBalance.value"
                                 :error-messages="newDepositeModalStore.startBalance.errorMessage"
                                 label="Начальный баланс"
                                 variant="outlined"
@@ -54,7 +53,7 @@ const submit = newDepositeModalStore.handleSubmit(async (values) => {
                         </v-col>
                         <v-col cols="4">
                             <v-select
-                                v-model="newDepositeModalStore.currency.value as string"
+                                v-model="newDepositeModalStore.currency.value"
                                 :error-messages="newDepositeModalStore.currency.errorMessage"
                                 :items="['RUB', 'USD']"
                                 label="Валюта"
@@ -63,7 +62,7 @@ const submit = newDepositeModalStore.handleSubmit(async (values) => {
                         </v-col>
                         <v-col cols="12">
                             <v-select
-                                v-model="newDepositeModalStore.type.value as string"
+                                v-model="newDepositeModalStore.type.value"
                                 :error-messages="newDepositeModalStore.type.errorMessage"
                                 :items="['Наличные', 'Кредитка']"
                                 label="Тип счета"
@@ -72,7 +71,7 @@ const submit = newDepositeModalStore.handleSubmit(async (values) => {
                         </v-col>
                         <v-col cols="12">
                             <v-textarea
-                                v-model="newDepositeModalStore.comment.value"
+                                v-model.trim="newDepositeModalStore.comment.value"
                                 label="Комментарий"
                                 variant="outlined"
                             ></v-textarea>

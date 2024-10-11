@@ -1,7 +1,6 @@
 import { type Deposite, depositeModel } from "@/entities/deposite";
 import { testFetching } from "@/shared/api";
 import { uuid } from "@/shared/lib/uuid";
-import { newDepositeModalModel } from "@/widgets/newDepositeModal";
 import { defineStore } from "pinia";
 import { ref } from "vue";
 
