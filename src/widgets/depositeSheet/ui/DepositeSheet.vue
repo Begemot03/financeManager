@@ -5,6 +5,7 @@ import { currencyIcon } from '@/shared/lib/currency';
 import { SpinLoader } from '@/shared/ui/spinLoader';
 import { EmptyListItem } from '@/shared/ui/EmptyListItem';
 
+//TODO: МБ надо вынести логику (есть composable useFetchList)
 const depositeStore = depositeModel();
 
 const isDepositesEmpty = computed(() => depositeStore.deposites.length == 0);

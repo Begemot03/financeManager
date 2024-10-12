@@ -1,33 +1,7 @@
-# financeManager
-
-This template should help get you started developing with Vue 3 in Vite.
-
-## Recommended IDE Setup
-
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
-
-## Type Support for `.vue` Imports in TS
-
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
-## Project Setup
-
-```sh
-pnpm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
-pnpm dev
-```
-
-### Type-Check, Compile and Minify for Production
-
-```sh
-pnpm build
-```
+# План
+1. Добавить сделать норм список операций с фильтрами и тд
+2. Добавить модалку с депозитами, чтобы при клики в списке депозитов на элемент 
+выходила модалка с полной инфой про депозит мб операции с этим депозитом
+3. Добавить статистику по месяцам на главную страницу
+4. Добаввить страницу с статиской, но там прям фул стата с настройками
+5. Добавить модалку как и для депа, но для операции
