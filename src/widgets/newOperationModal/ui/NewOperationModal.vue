@@ -8,7 +8,6 @@ const newOperationModalStore = newOperationModalModel();
 const addOperationStore = addOperationModel();
 
 const submit = newOperationModalStore.handleSubmit(async (values) => {
-    console.log(1)
     await addOperationStore.addOperation(values as Operation);
     newOperationModalStore.handleReset();
     newOperationModalStore.close();

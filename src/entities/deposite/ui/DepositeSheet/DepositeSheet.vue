@@ -1,14 +1,17 @@
 <script setup lang="ts">
-import { onMounted } from 'vue';
+import { computed, onMounted } from 'vue';
 import { depositeModel } from '../../model';
 import { currencyIcon } from '@/shared/lib/currency';
+import { SpinLoader } from '@/shared/ui/spinLoader';
 
 const depositeStore = depositeModel();
 
+const isDepositesEmpty = computed(() => depositeStore.deposites.length == 0);
+const showEmptyListElement = computed(() => isDepositesEmpty && !depositeStore.loading);
 
 onMounted(() => {
     depositeStore.getDepositeList();
-})
+});
 
 </script>
 
@@ -21,7 +24,10 @@ onMounted(() => {
         />
         <v-list 
         >
-            <v-list-item
+            <template
+                v-if="!isDepositesEmpty"
+            >
+                <v-list-item
                     v-for="{ name, comment, startBalance, currency } in depositeStore.deposites"
                     :title="name"
                     :subtitle="comment"
@@ -31,16 +37,19 @@ onMounted(() => {
                         <div>{{ startBalance }}</div>
                         <v-icon :icon="currencyIcon[currency]" end />
                     </template>
-            </v-list-item>
-            <v-container 
-                v-if="depositeStore.loading" 
-                class="fill-height d-flex align-center justify-center"
+                </v-list-item>
+            </template>
+            <template
+                v-else-if="showEmptyListElement"
             >
-                <v-progress-circular
-                    indeterminate
-                    color="primary"
-                />
-            </v-container>
+                <v-list-item
+                    title="Тут пока пусто"
+                ></v-list-item>
+            </template>
+           
+            <SpinLoader 
+                :loading="depositeStore.loading"
+            />
         </v-list>
     </v-card>
 </template>
