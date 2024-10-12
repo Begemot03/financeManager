@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import { computed, onMounted } from 'vue';
-import { depositeModel } from '../../model';
+import { depositeModel } from "@/entities/deposite";
 import { currencyIcon } from '@/shared/lib/currency';
 import { SpinLoader } from '@/shared/ui/spinLoader';
+import { EmptyListItem } from '@/shared/ui/EmptyListItem';
 
 const depositeStore = depositeModel();
 
@@ -42,9 +43,7 @@ onMounted(() => {
             <template
                 v-else-if="showEmptyListElement"
             >
-                <v-list-item
-                    title="Тут пока пусто"
-                ></v-list-item>
+                <EmptyListItem></EmptyListItem>
             </template>
            
             <SpinLoader 

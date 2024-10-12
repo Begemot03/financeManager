@@ -1,7 +1,3 @@
-import ViewOperation from "./ViewOperation/ViewOperation.vue";
-import OperationSheet from "./OperationSheet/OperationSheet.vue";
+import ViewOperation from "./viewOperation/ViewOperation.vue";
 
-export {
-    ViewOperation,
-    OperationSheet,
-};
+export { ViewOperation };

@@ -1,7 +1,3 @@
-import DepositeSheet from "./DepositeSheet/DepositeSheet.vue";
-import DepositeCard from "./DepositeCard/DepositeCard.vue";
+import DepositeCard from "./viewDeposite/DepositeCard.vue";
 
-export {
-    DepositeSheet,
-    DepositeCard,
-};
+export { DepositeCard };

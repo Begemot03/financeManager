@@ -1,14 +1,14 @@
 <script setup>
-import { DepositeSheet } from '@/entities/deposite';
-import { OperationSheet } from '@/entities/operation';
+import { OperationSheet } from '@/widgets/operationSheet';
+import { DepositeSheet } from '@/widgets/depositeSheet';
 import NewDepositeModal from '@/widgets/newDepositeModal/ui/NewDepositeModal.vue';
 import { NewOperationModal } from '@/widgets/newOperationModal';
 
 </script>
 
 <template>
-    <DepositeSheet />
-    <OperationSheet />
+    <DepositeSheet></DepositeSheet>
+    <OperationSheet></OperationSheet>
     <NewDepositeModal />
     <NewOperationModal />
 </template>
