@@ -3,7 +3,7 @@ import { computed, onMounted } from 'vue';
 import { depositeModel } from "@/entities/deposite";
 import { currencyIcon } from '@/shared/lib/currency';
 import { SpinLoader } from '@/shared/ui/spinLoader';
-import { EmptyListItem } from '@/shared/ui/EmptyListItem';
+import { EmptyListItem } from '@/shared/ui/emptyListItem';
 
 //TODO: МБ надо вынести логику (есть composable useFetchList)
 const depositeStore = depositeModel();
