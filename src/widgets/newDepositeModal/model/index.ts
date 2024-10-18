@@ -1,1 +1,1 @@
-export { useNewDepositeModal as newDepositeModalModel } from "./newDepositeModal";
+export { useNewDepositeModal as newDepositeModalModel } from './newDepositeModal';

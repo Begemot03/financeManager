@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Operation } from "../../model";
+import type { Operation } from '../../model';
 
 const props = defineProps<{
 	data: Operation;

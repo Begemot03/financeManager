@@ -1,6 +1,6 @@
-import type { Currency } from "@/shared/lib/currency";
+import type { Currency } from '@/shared/lib/currency';
 
-export type OperationType = "Доход" | "Расход";
+export type OperationType = 'Доход' | 'Расход';
 
 export type Operation = {
 	id: number;

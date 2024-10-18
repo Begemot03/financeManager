@@ -1,3 +1,3 @@
-import AddDeposite from "./AddDeposite.vue";
+import AddDeposite from './AddDeposite.vue';
 
 export { AddDeposite };

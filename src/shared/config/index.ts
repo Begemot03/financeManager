@@ -1,8 +1,8 @@
-export type TTheme = "dark" | "light";
+export type TTheme = 'dark' | 'light';
 
 export const THEME: Record<string, TTheme> = {
-	light: "light",
-	dark: "dark",
+	light: 'light',
+	dark: 'dark'
 };
 
-export const ASSETS_PATH = "@/shared/assets/";
+export const ASSETS_PATH = '@/shared/assets/';

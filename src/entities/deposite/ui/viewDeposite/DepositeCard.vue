@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { defineProps } from "vue";
-import type { Deposite } from "@/entities/deposite";
+import { defineProps } from 'vue';
+import type { Deposite } from '@/entities/deposite';
 
 const props = defineProps<{
 	deposite: Deposite;

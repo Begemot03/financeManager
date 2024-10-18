@@ -1,4 +1,4 @@
-import { computed, onMounted, ref, type Ref } from "vue";
+import { computed, onMounted, ref, type Ref } from 'vue';
 
 //TODO: МБ буду юзать для вынесения логики в списках
 export function useFetchList<T>(fetchFunction: () => Promise<T[]>) {
@@ -25,6 +25,6 @@ export function useFetchList<T>(fetchFunction: () => Promise<T[]>) {
 		items,
 		loading,
 		isEmpty,
-		fetchItems,
+		fetchItems
 	};
 }

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { notificationModel } from "../model";
+import { notificationModel } from '../model';
 
 const notificationStore = notificationModel();
 </script>

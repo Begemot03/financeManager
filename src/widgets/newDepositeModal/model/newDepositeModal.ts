@@ -1,42 +1,42 @@
-import { Currency } from "@/shared/lib/currency";
-import { defineStore } from "pinia";
-import { useField, useForm } from "vee-validate";
-import { ref } from "vue";
+import { Currency } from '@/shared/lib/currency';
+import { defineStore } from 'pinia';
+import { useField, useForm } from 'vee-validate';
+import { ref } from 'vue';
 
-export const useNewDepositeModal = defineStore("newDepositeModal", () => {
+export const useNewDepositeModal = defineStore('newDepositeModal', () => {
 	const { handleSubmit, handleReset } = useForm({
 		initialValues: {
-			name: "",
-			type: "Наличные",
+			name: '',
+			type: 'Наличные',
 			startBalance: 0,
 			currency: Currency.RUB,
-			comment: "",
+			comment: ''
 		},
 		validationSchema: {
 			name(value: string) {
 				if (value) return true;
-				return "Выберите имя счета.";
+				return 'Выберите имя счета.';
 			},
 			type(value: string) {
-				if (value === "Наличные" || value === "Кредитка") return true;
-				return "Выберите тип счета";
+				if (value === 'Наличные' || value === 'Кредитка') return true;
+				return 'Выберите тип счета';
 			},
 			startBalance(value: number) {
 				if (value >= 0) return true;
-				return "Начальный баланс не может быть отрицательным.";
+				return 'Начальный баланс не может быть отрицательным.';
 			},
 			currency(value: string) {
 				if (value === Currency.RUB || value === Currency.USD) return true;
-				return "Выберите валюту из списка.";
-			},
-		},
+				return 'Выберите валюту из списка.';
+			}
+		}
 	});
 
-	const name = useField<string>("name");
-	const type = useField<string>("type");
-	const startBalance = useField<number>("startBalance");
-	const currency = useField<string>("currency");
-	const comment = useField<string>("comment");
+	const name = useField<string>('name');
+	const type = useField<string>('type');
+	const startBalance = useField<number>('startBalance');
+	const currency = useField<string>('currency');
+	const comment = useField<string>('comment');
 
 	const visible = ref(false);
 
@@ -58,6 +58,6 @@ export const useNewDepositeModal = defineStore("newDepositeModal", () => {
 		handleReset,
 		visible,
 		open,
-		close,
+		close
 	};
 });

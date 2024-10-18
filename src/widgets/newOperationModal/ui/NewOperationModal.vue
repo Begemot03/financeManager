@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { BaseModal } from "@/shared/ui/baseModal";
-import { newOperationModalModel } from "../model";
-import { AddOperation, addOperationModel } from "@/features/addOperation";
-import type { Operation } from "@/entities/operation";
+import { BaseModal } from '@/shared/ui/baseModal';
+import { newOperationModalModel } from '../model';
+import { AddOperation, addOperationModel } from '@/features/addOperation';
+import type { Operation } from '@/entities/operation';
 
 const newOperationModalStore = newOperationModalModel();
 const addOperationStore = addOperationModel();
@@ -21,7 +21,10 @@ const submit = newOperationModalStore.handleSubmit(async (values) => {
 		:persistent="false"
 	>
 		<template #activator>
-			<v-btn text="Новая операция" @click="newOperationModalStore.open" />
+			<v-btn
+				text="Новая операция"
+				@click="newOperationModalStore.open"
+			/>
 		</template>
 		<v-form @submit.prevent="submit">
 			<v-card title="Новая операция">
@@ -91,7 +94,11 @@ const submit = newOperationModalStore.handleSubmit(async (values) => {
 					</v-row>
 				</v-card-text>
 				<v-card-actions>
-					<AddOperation variant="tonal" color="blue" type="submit">
+					<AddOperation
+						variant="tonal"
+						color="blue"
+						type="submit"
+					>
 						Добавить
 					</AddOperation>
 					<v-btn

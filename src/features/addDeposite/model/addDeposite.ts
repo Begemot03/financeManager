@@ -1,10 +1,10 @@
-import { type Deposite, depositeModel } from "@/entities/deposite";
-import { testFetching } from "@/shared/api";
-import { uuid } from "@/shared/lib/uuid";
-import { defineStore } from "pinia";
-import { ref } from "vue";
+import { type Deposite, depositeModel } from '@/entities/deposite';
+import { testFetching } from '@/shared/api';
+import { uuid } from '@/shared/lib/uuid';
+import { defineStore } from 'pinia';
+import { ref } from 'vue';
 
-export const useAddDepositeStore = defineStore("addDeposite", () => {
+export const useAddDepositeStore = defineStore('addDeposite', () => {
 	const depositeStore = depositeModel();
 	const loading = ref(false);
 
@@ -16,7 +16,7 @@ export const useAddDepositeStore = defineStore("addDeposite", () => {
 
 			depositeStore.deposites.push({
 				...newDeposite,
-				id: uuid(),
+				id: uuid()
 			});
 		} catch (e) {
 			console.log(`Ошибка при добавлении депозите: ${e}`);
@@ -27,6 +27,6 @@ export const useAddDepositeStore = defineStore("addDeposite", () => {
 
 	return {
 		addDeposite,
-		loading,
+		loading
 	};
 });

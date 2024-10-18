@@ -1,2 +1,2 @@
-export { useNotificationStore as notificationModel } from "./notification";
-export type * from "./type";
+export { useNotificationStore as notificationModel } from './notification';
+export type * from './type';

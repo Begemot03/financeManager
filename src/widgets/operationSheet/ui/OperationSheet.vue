@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { computed, onMounted, watch } from "vue";
-import { operationModel } from "@/entities/operation";
-import { currencyIcon } from "@/shared/lib/currency";
-import { SpinLoader } from "@/shared/ui/spinLoader";
-import { EmptyListItem } from "@/shared/ui/emptyListItem";
+import { computed, onMounted, watch } from 'vue';
+import { operationModel } from '@/entities/operation';
+import { currencyIcon } from '@/shared/lib/currency';
+import { SpinLoader } from '@/shared/ui/spinLoader';
+import { EmptyListItem } from '@/shared/ui/emptyListItem';
 
 //TODO: МБ надо вынести логику (есть composable useFetchList)
 const operationStore = operationModel();
@@ -30,7 +30,7 @@ onMounted(() => {
 						sum,
 						currency,
 						category,
-						comment,
+						comment
 					} in operationStore.operations"
 					:key="id"
 					:title="category"

@@ -1,3 +1,3 @@
-import Notification from "./Notification.vue";
+import Notification from './Notification.vue';
 
 export { Notification };

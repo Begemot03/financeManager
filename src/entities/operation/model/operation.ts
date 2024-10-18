@@ -1,10 +1,10 @@
-import { computed, ref } from "vue";
-import type { Operation, OperationType } from "./types";
-import { defineStore } from "pinia";
-import { Currency } from "@/shared/lib/currency";
-import { testFetching } from "@/shared/api";
+import { computed, ref } from 'vue';
+import type { Operation, OperationType } from './types';
+import { defineStore } from 'pinia';
+import { Currency } from '@/shared/lib/currency';
+import { testFetching } from '@/shared/api';
 
-export const useOperationStore = defineStore("operationStore", () => {
+export const useOperationStore = defineStore('operationStore', () => {
 	const operations = ref<Operation[]>([]);
 	const loading = ref(false);
 
@@ -29,6 +29,6 @@ export const useOperationStore = defineStore("operationStore", () => {
 		operations,
 		loading,
 		depositeOperations,
-		getOperationList,
+		getOperationList
 	};
 });

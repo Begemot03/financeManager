@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { addOperationModel } from "../model";
+import { addOperationModel } from '../model';
 
 const addOperationStore = addOperationModel();
 </script>

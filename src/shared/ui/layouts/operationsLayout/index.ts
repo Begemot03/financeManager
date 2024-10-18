@@ -1,3 +1,3 @@
-import OperationsLayout from "./OperationsLayout.vue";
+import OperationsLayout from './OperationsLayout.vue';
 
 export { OperationsLayout };

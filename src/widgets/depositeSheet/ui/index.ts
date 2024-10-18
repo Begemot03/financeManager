@@ -1,3 +1,3 @@
-import DepositeSheet from "./DepositeSheet.vue";
+import DepositeSheet from './DepositeSheet.vue';
 
 export { DepositeSheet };

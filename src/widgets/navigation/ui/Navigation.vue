@@ -1,19 +1,19 @@
 <script setup>
-import { reactive } from "vue";
+import { reactive } from 'vue';
 
 const routes = reactive([
 	{
-		name: "Главная",
-		to: "/",
+		name: 'Главная',
+		to: '/'
 	},
 	{
-		name: "Финансы",
-		to: "/finance",
+		name: 'Финансы',
+		to: '/finance'
 	},
 	{
-		name: "Счета",
-		to: "/deposite",
-	},
+		name: 'Счета',
+		to: '/deposite'
+	}
 ]);
 </script>
 

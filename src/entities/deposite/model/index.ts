@@ -1,3 +1,3 @@
-export { useDepositeStore as depositeModel } from "./deposite";
+export { useDepositeStore as depositeModel } from './deposite';
 
-export type * from "./types";
+export type * from './types';

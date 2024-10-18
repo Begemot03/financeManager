@@ -1,3 +1,3 @@
-export type * from "./types";
+export type * from './types';
 
-export { useOperationStore as operationModel } from "./operation";
+export { useOperationStore as operationModel } from './operation';

@@ -5,7 +5,7 @@ const props = defineProps<{
 	persistent: boolean;
 }>();
 
-const emit = defineEmits(["update:visible"]);
+const emit = defineEmits(['update:visible']);
 </script>
 
 <template>

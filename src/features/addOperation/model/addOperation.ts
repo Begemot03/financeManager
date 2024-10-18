@@ -1,14 +1,14 @@
 import {
 	operationModel,
 	type Operation,
-	type OperationType,
-} from "@/entities/operation";
-import { testFetching } from "@/shared/api";
-import { uuid } from "@/shared/lib/uuid";
-import { defineStore } from "pinia";
-import { ref } from "vue";
+	type OperationType
+} from '@/entities/operation';
+import { testFetching } from '@/shared/api';
+import { uuid } from '@/shared/lib/uuid';
+import { defineStore } from 'pinia';
+import { ref } from 'vue';
 
-export const useAddOperationFeatureStore = defineStore("addOperation", () => {
+export const useAddOperationFeatureStore = defineStore('addOperation', () => {
 	const operationStore = operationModel();
 	const loading = ref(false);
 
@@ -28,7 +28,7 @@ export const useAddOperationFeatureStore = defineStore("addOperation", () => {
 				depositeId: data.depositeId,
 				category: data.category,
 				comment: data.comment,
-				currency: data.currency,
+				currency: data.currency
 			});
 		} catch (e) {
 			console.log(`Произошла ошибка при добавлении операции ${e}`);
@@ -39,6 +39,6 @@ export const useAddOperationFeatureStore = defineStore("addOperation", () => {
 
 	return {
 		addOperation,
-		loading,
+		loading
 	};
 });

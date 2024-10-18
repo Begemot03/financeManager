@@ -1,3 +1,3 @@
-import SpinLoader from "./SpinLoader.vue";
+import SpinLoader from './SpinLoader.vue';
 
 export { SpinLoader };

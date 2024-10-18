@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { BaseModal } from "@/shared/ui/baseModal";
-import { newDepositeModalModel } from "../model";
-import { AddDeposite, addDepositeModel } from "@/features/addDeposite";
-import type { Deposite } from "@/entities/deposite";
+import { BaseModal } from '@/shared/ui/baseModal';
+import { newDepositeModalModel } from '../model';
+import { AddDeposite, addDepositeModel } from '@/features/addDeposite';
+import type { Deposite } from '@/entities/deposite';
 
 const addDepositeStore = addDepositeModel();
 const newDepositeModalStore = newDepositeModalModel();
@@ -21,10 +21,16 @@ const submit = newDepositeModalStore.handleSubmit(async (values) => {
 		:persistent="true"
 	>
 		<template #activator>
-			<v-btn text="Создание счета" @click="newDepositeModalStore.open" />
+			<v-btn
+				text="Создание счета"
+				@click="newDepositeModalStore.open"
+			/>
 		</template>
 		<v-form @submit.prevent="submit">
-			<v-card title="Новый счет" rounded>
+			<v-card
+				title="Новый счет"
+				rounded
+			>
 				<v-card-text>
 					<v-row dense>
 						<v-col cols="12">
@@ -73,7 +79,11 @@ const submit = newDepositeModalStore.handleSubmit(async (values) => {
 					</v-row>
 				</v-card-text>
 				<v-card-actions>
-					<AddDeposite variant="tonal" color="blue" type="submit">
+					<AddDeposite
+						variant="tonal"
+						color="blue"
+						type="submit"
+					>
 						Добавить
 					</AddDeposite>
 					<v-btn

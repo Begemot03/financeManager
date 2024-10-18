@@ -1,10 +1,10 @@
-import { defineStore } from "pinia";
-import { computed, ref } from "vue";
-import type { Deposite } from "./types";
-import { operationModel } from "@/entities/operation/model";
-import { testFetching } from "@/shared/api";
+import { defineStore } from 'pinia';
+import { computed, ref } from 'vue';
+import type { Deposite } from './types';
+import { operationModel } from '@/entities/operation/model';
+import { testFetching } from '@/shared/api';
 
-export const useDepositeStore = defineStore("deposite", () => {
+export const useDepositeStore = defineStore('deposite', () => {
 	const deposites = ref<Deposite[]>([]);
 	const loading = ref(false);
 
@@ -44,6 +44,6 @@ export const useDepositeStore = defineStore("deposite", () => {
 		deposites,
 		loading,
 		depositeBalance,
-		getDepositeList,
+		getDepositeList
 	};
 });

@@ -1,3 +1,3 @@
-import NewDepositeModal from "./NewDepositeModal.vue";
+import NewDepositeModal from './NewDepositeModal.vue';
 
 export { NewDepositeModal };

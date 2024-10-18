@@ -1,3 +1,3 @@
-import DepositeCard from "./viewDeposite/DepositeCard.vue";
+import DepositeCard from './viewDeposite/DepositeCard.vue';
 
 export { DepositeCard };

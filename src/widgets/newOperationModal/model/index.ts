@@ -1,1 +1,1 @@
-export { useNewOperationModal as newOperationModalModel } from "./newOperationModal";
+export { useNewOperationModal as newOperationModalModel } from './newOperationModal';

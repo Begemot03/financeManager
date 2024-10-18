@@ -1,3 +1,3 @@
-import Header from "@/widgets/header/ui/Header.vue";
+import Header from '@/widgets/header/ui/Header.vue';
 
 export { Header };

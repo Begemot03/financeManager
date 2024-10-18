@@ -1,6 +1,6 @@
-import type { Currency } from "@/shared/lib/currency";
+import type { Currency } from '@/shared/lib/currency';
 
-export type DepositeType = "Наличные" | "Кредитка";
+export type DepositeType = 'Наличные' | 'Кредитка';
 
 export type Deposite = {
 	id: number;

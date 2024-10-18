@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { computed, onMounted } from "vue";
-import { depositeModel } from "@/entities/deposite";
-import { currencyIcon } from "@/shared/lib/currency";
-import { SpinLoader } from "@/shared/ui/spinLoader";
-import { EmptyListItem } from "@/shared/ui/emptyListItem";
+import { computed, onMounted } from 'vue';
+import { depositeModel } from '@/entities/deposite';
+import { currencyIcon } from '@/shared/lib/currency';
+import { SpinLoader } from '@/shared/ui/spinLoader';
+import { EmptyListItem } from '@/shared/ui/emptyListItem';
 
 //TODO: МБ надо вынести логику (есть composable useFetchList)
 const depositeStore = depositeModel();
@@ -28,7 +28,7 @@ onMounted(() => {
 						name,
 						comment,
 						startBalance,
-						currency,
+						currency
 					} in depositeStore.deposites"
 					:title="name"
 					:subtitle="comment"
@@ -36,7 +36,10 @@ onMounted(() => {
 				>
 					<template #append>
 						<div>{{ startBalance }}</div>
-						<v-icon :icon="currencyIcon[currency]" end />
+						<v-icon
+							:icon="currencyIcon[currency]"
+							end
+						/>
 					</template>
 				</v-list-item>
 			</template>
