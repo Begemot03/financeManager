@@ -7,8 +7,6 @@
 			<v-main app>
 				<slot />
 			</v-main>
-
-			<slot name="footer" />
 		</v-container>
 	</v-app>
 </template>
