@@ -6,5 +6,6 @@
     "tabWidth": 2,
     "bracketSpacing": true,
     "bracketSameLine": false,
-    "singleAttributePerLine": true
+    "singleAttributePerLine": true,
+    "plugins": ["prettier-plugin-vue"]
 }
