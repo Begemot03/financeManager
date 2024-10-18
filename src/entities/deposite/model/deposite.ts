@@ -1,46 +1,49 @@
 import { defineStore } from "pinia";
 import { computed, ref } from "vue";
-import type { Deposite, DepositeType } from "./types";
+import type { Deposite } from "./types";
 import { operationModel } from "@/entities/operation/model";
-import { Currency } from "@/shared/lib/currency";
 import { testFetching } from "@/shared/api";
 
 export const useDepositeStore = defineStore("deposite", () => {
-    const deposites = ref<Deposite[]>([]);
-    const loading = ref(false);
+	const deposites = ref<Deposite[]>([]);
+	const loading = ref(false);
 
-    const depositeBalance = computed(() => {
-        return (depositeId: number) => {
-            const operationStore = operationModel();
+	const depositeBalance = computed(() => {
+		return (depositeId: number) => {
+			const operationStore = operationModel();
 
-            const deposite = deposites.value.find(d => d.id === depositeId);
+			const deposite = deposites.value.find((d) => d.id === depositeId);
 
-            if(!deposite) {
-                console.log(`Депозит ${depositeId} не найден!`);
-                return 0;
-            }
+			if (!deposite) {
+				console.log(`Депозит ${depositeId} не найден!`);
+				return 0;
+			}
 
-            const depositeOperations = operationStore.depositeOperations(depositeId) || [];
+			const depositeOperations =
+				operationStore.depositeOperations(depositeId) || [];
 
-            return depositeOperations.reduce((total, operation) => (total + operation.sum), deposite.startBalance);
-        };
-    });
+			return depositeOperations.reduce(
+				(total, operation) => total + operation.sum,
+				deposite.startBalance
+			);
+		};
+	});
 
-    async function getDepositeList() {
-        try {
-            loading.value = true;
-            await testFetching(1500);
-        } catch(e) {
-            console.log(`Ошибка при получении списка счетов: ${e}`)
-        } finally {
-            loading.value = false;
-        }
-    }
+	async function getDepositeList() {
+		try {
+			loading.value = true;
+			await testFetching(1500);
+		} catch (e) {
+			console.log(`Ошибка при получении списка счетов: ${e}`);
+		} finally {
+			loading.value = false;
+		}
+	}
 
-    return { 
-        deposites,
-        loading,
-        depositeBalance, 
-        getDepositeList,
-    };
+	return {
+		deposites,
+		loading,
+		depositeBalance,
+		getDepositeList,
+	};
 });

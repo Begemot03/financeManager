@@ -1,55 +1,50 @@
 <script setup lang="ts">
-import { computed, onMounted } from 'vue';
+import { computed, onMounted } from "vue";
 import { depositeModel } from "@/entities/deposite";
-import { currencyIcon } from '@/shared/lib/currency';
-import { SpinLoader } from '@/shared/ui/spinLoader';
-import { EmptyListItem } from '@/shared/ui/emptyListItem';
+import { currencyIcon } from "@/shared/lib/currency";
+import { SpinLoader } from "@/shared/ui/spinLoader";
+import { EmptyListItem } from "@/shared/ui/emptyListItem";
 
 //TODO: МБ надо вынести логику (есть composable useFetchList)
 const depositeStore = depositeModel();
 
 const isDepositesEmpty = computed(() => depositeStore.deposites.length == 0);
-const showEmptyListElement = computed(() => isDepositesEmpty && !depositeStore.loading);
+const showEmptyListElement = computed(
+	() => isDepositesEmpty.value && !depositeStore.loading
+);
 
 onMounted(() => {
-    depositeStore.getDepositeList();
+	depositeStore.getDepositeList();
 });
-
 </script>
 
 <template>
-    <v-card
-        max-width="400"
-    >
-        <v-toolbar
-            title="Депозиты"
-        />
-        <v-list 
-        >
-            <template
-                v-if="!isDepositesEmpty"
-            >
-                <v-list-item
-                    v-for="{ name, comment, startBalance, currency } in depositeStore.deposites"
-                    :title="name"
-                    :subtitle="comment"
-                    density="compact"
-                >
-                    <template #append>
-                        <div>{{ startBalance }}</div>
-                        <v-icon :icon="currencyIcon[currency]" end />
-                    </template>
-                </v-list-item>
-            </template>
-            <template
-                v-else-if="showEmptyListElement"
-            >
-                <EmptyListItem></EmptyListItem>
-            </template>
-           
-            <SpinLoader 
-                :loading="depositeStore.loading"
-            />
-        </v-list>
-    </v-card>
+	<v-card max-width="400">
+		<v-toolbar title="Депозиты" />
+		<v-list>
+			<template v-if="!isDepositesEmpty">
+				<v-list-item
+					v-for="{
+						name,
+						comment,
+						startBalance,
+						currency,
+					} in depositeStore.deposites"
+					:title="name"
+					:subtitle="comment"
+					density="compact"
+				>
+					<template #append>
+						<div>{{ startBalance }}</div>
+						<v-icon :icon="currencyIcon[currency]" end />
+					</template>
+				</v-list-item>
+			</template>
+			<template v-else-if="showEmptyListElement">
+				<EmptyListItem />
+			</template>
+
+			<SpinLoader :loading="depositeStore.loading" />
+		</v-list>
+	</v-card>
 </template>

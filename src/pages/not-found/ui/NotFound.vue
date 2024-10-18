@@ -1,13 +1,7 @@
-<script setup>
-
-</script>
+<script setup></script>
 
 <template>
-    <div>
-        Page Not Found
-    </div>
+	<div>Page Not Found</div>
 </template>
 
-<style scoped>
-    
-</style>
+<style scoped></style>

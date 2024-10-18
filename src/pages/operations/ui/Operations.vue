@@ -1,7 +1,4 @@
-<script setup lang="ts">
-</script>
+<script setup lang="ts"></script>
 <template>
-    <div>
-        Список операций
-    </div>
+	<div>Список операций</div>
 </template>
