@@ -4,30 +4,30 @@ import { reactive } from 'vue';
 const routes = reactive([
     {
         name: "Главная",
-        path: "/",
+        to: "/",
     },
     {
         name: "Финансы",
-        path: "/finance",
+        to: "/finance",
     },
     {
         name: "Счета",
-        path: "/deposite",
+        to: "/deposite",
     },
 ])
 
 </script>
 
 <template>
-    <nav>
-        <RouterLink
-            v-for="({ path, name }, index) in routes"
-            :key="index"
-            :to="path"
-        >{{ name  }}</RouterLink>
-    </nav>
+    <v-navigation-drawer app>
+        <v-list>
+            <v-list-item
+                v-for="({name, to}, i) in routes"
+                :key="i"
+                :to="to"    
+                :title="name"
+                link
+            ></v-list-item>
+        </v-list>
+    </v-navigation-drawer>
 </template>
-
-<style scoped>
-    
-</style>

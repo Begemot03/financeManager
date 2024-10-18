@@ -1,3 +1,4 @@
+import { DefaultLayout } from '@/shared/ui/layouts';
 import { createRouter, createWebHistory } from 'vue-router'
 
 export const appRouter = createRouter({
@@ -8,13 +9,16 @@ export const appRouter = createRouter({
 			name: 'Home',
 			component: () => import('@/pages/home/ui/Home.vue'),
 			meta: {
-				title: 'Home'
+				layout: DefaultLayout,
 			}
 		},
 		{
 			path: "/:pathMatch(.*)",
 			name: "Not Found",
 			component: () => import('@/pages/not-found/ui/NotFound.vue'),
+			meta: {
+				layout: DefaultLayout,
+			}
 		}
 	]
 });

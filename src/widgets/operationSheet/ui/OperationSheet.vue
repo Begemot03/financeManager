@@ -11,8 +11,6 @@ const operationStore = operationModel();
 const isOperationsEmpty = computed(() => operationStore.operations.length == 0);
 const showEmptyListElement = computed(() => isOperationsEmpty && !operationStore.loading);
 
-watch(showEmptyListElement, (v, old) => console.log(isOperationsEmpty.value, v));
-
 onMounted(() => {
     operationStore.getOperationList();
 });
