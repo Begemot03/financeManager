@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { defineProps } from 'vue';
 import type { Deposite } from '@/entities/deposite';
+import Card from 'primevue/card';
 
 const props = defineProps<{
 	deposite: Deposite;
@@ -8,11 +9,13 @@ const props = defineProps<{
 </script>
 
 <template>
-	<v-card>
-		<v-card-title>
+	<Card>
+		<template #title>
 			{{ props.deposite.name }} - {{ props.deposite.startBalance }}
 			{{ props.deposite.currency }}
-		</v-card-title>
-		<v-card-subtitle>{{ props.deposite.comment }}</v-card-subtitle>
-	</v-card>
+		</template #content>
+		<template #content>
+			{{ props.deposite.comment }}
+		</template>
+	</Card>
 </template>

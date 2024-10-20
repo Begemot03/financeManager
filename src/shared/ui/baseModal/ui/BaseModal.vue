@@ -1,7 +1,9 @@
 <script setup lang="ts">
+import Dialog from 'primevue/dialog';
+
 const props = defineProps<{
 	visible: boolean;
-	title: string;
+	header: string;
 	persistent: boolean;
 }>();
 
@@ -9,15 +11,13 @@ const emit = defineEmits(['update:visible']);
 </script>
 
 <template>
-	<v-dialog
-		v-model="props.visible"
-		max-width="600"
-		:persistent="props.persistent"
-		@update:model-value="(val) => emit('update:visible', val)"
+	<Dialog
+		v-model:visible="props.visible"
+		@update:visible="(val) => emit('update:visible', val)"
+		:style="{ width: '25rem' }"
+		:header="props.header"
+		modal
 	>
-		<template #activator>
-			<slot name="activator" />
-		</template>
 		<slot />
-	</v-dialog>
+	</Dialog>
 </template>

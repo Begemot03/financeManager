@@ -1,11 +1,12 @@
 <script setup lang="ts">
+import Button from 'primevue/button';
 import { addOperationModel } from '../model';
 
 const addOperationStore = addOperationModel();
 </script>
 
 <template>
-	<v-btn :loading="addOperationStore.loading">
+	<Button :loading="addOperationStore.loading">
 		<slot />
-	</v-btn>
+	</Button>
 </template>

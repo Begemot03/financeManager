@@ -15,18 +15,35 @@ const submit = newDepositeModalStore.handleSubmit(async (values) => {
 </script>
 
 <template>
+	<Button
+		label="Создание счета"
+		@click="newDepositeModalStore.open"
+	/>
 	<BaseModal
 		v-model:visible="newDepositeModalStore.visible"
-		title="Новый счет"
+		header="Новый счет"
 		:persistent="true"
 	>
-		<template #activator>
-			<v-btn
-				text="Создание счета"
-				@click="newDepositeModalStore.open"
-			/>
-		</template>
-		<v-form @submit.prevent="submit">
+		<form @submit.prevent="submit">
+			<div class="mb-4"> 
+				<InputText
+					type="text"
+					v-model.trim="newDepositeModalStore.name.value"
+				/>
+			</div>
+			<div class="grid gird-col-2 gap-4"> 
+				<InputNumber
+					v-model="newDepositeModalStore.startBalance.value"
+					inputId="integeronly"
+				/>
+				<InputText
+					type="text"
+					v-model.trim="newDepositeModalStore.name.value"
+				/>
+			</div>
+			<div class="mb-4"> 
+				
+			</div>
 			<v-card
 				title="Новый счет"
 				rounded
@@ -34,12 +51,7 @@ const submit = newDepositeModalStore.handleSubmit(async (values) => {
 				<v-card-text>
 					<v-row dense>
 						<v-col cols="12">
-							<v-text-field
-								v-model.trim="newDepositeModalStore.name.value"
-								:error-messages="newDepositeModalStore.name.errorMessage"
-								label="Название счета"
-								variant="outlined"
-							/>
+							
 						</v-col>
 						<v-col cols="8">
 							<v-text-field
@@ -93,6 +105,6 @@ const submit = newDepositeModalStore.handleSubmit(async (values) => {
 					/>
 				</v-card-actions>
 			</v-card>
-		</v-form>
+		</form>
 	</BaseModal>
 </template>
