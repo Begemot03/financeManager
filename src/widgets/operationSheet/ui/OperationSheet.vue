@@ -30,7 +30,7 @@ onMounted(() => {
 						sum,
 						currency,
 						category,
-						comment
+						comment,
 					} in operationStore.operations"
 					:key="id"
 					:title="category"

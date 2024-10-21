@@ -9,7 +9,7 @@ export const useNewOperationModal = defineStore('newOperationModal', () => {
 	const listOfDeposites = computed<Array<{ name: string; id: number }>>(() =>
 		depositeStore.deposites.map((deposite) => ({
 			name: deposite.name,
-			id: deposite.id
+			id: deposite.id,
 		}))
 	);
 
@@ -20,7 +20,7 @@ export const useNewOperationModal = defineStore('newOperationModal', () => {
 			sum: 0,
 			currency: Currency.RUB,
 			category: 'Еда',
-			comment: ''
+			comment: '',
 		},
 		validationSchema: {
 			name(value: string) {
@@ -47,8 +47,8 @@ export const useNewOperationModal = defineStore('newOperationModal', () => {
 			category(value: string) {
 				if (category) return true;
 				return 'Выберите категорию из списка.';
-			}
-		}
+			},
+		},
 	});
 
 	const name = useField<string>('name');
@@ -82,6 +82,6 @@ export const useNewOperationModal = defineStore('newOperationModal', () => {
 		close,
 		open,
 		handleSubmit,
-		handleReset
+		handleReset,
 	};
 });

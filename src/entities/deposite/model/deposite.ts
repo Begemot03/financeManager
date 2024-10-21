@@ -44,6 +44,6 @@ export const useDepositeStore = defineStore('deposite', () => {
 		deposites,
 		loading,
 		depositeBalance,
-		getDepositeList
+		getDepositeList,
 	};
 });

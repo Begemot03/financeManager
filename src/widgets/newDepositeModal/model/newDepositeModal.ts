@@ -10,7 +10,7 @@ export const useNewDepositeModal = defineStore('newDepositeModal', () => {
 			type: 'Наличные',
 			startBalance: 0,
 			currency: Currency.RUB,
-			comment: ''
+			comment: '',
 		},
 		validationSchema: {
 			name(value: string) {
@@ -28,8 +28,8 @@ export const useNewDepositeModal = defineStore('newDepositeModal', () => {
 			currency(value: string) {
 				if (value === Currency.RUB || value === Currency.USD) return true;
 				return 'Выберите валюту из списка.';
-			}
-		}
+			},
+		},
 	});
 
 	const name = useField<string>('name');
@@ -58,6 +58,6 @@ export const useNewDepositeModal = defineStore('newDepositeModal', () => {
 		handleReset,
 		visible,
 		open,
-		close
+		close,
 	};
 });

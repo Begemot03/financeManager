@@ -1,3 +1,3 @@
-import BaseModal from './BaseModal.vue';
+import BaseModal from './baseModal.vue';
 
 export { BaseModal };

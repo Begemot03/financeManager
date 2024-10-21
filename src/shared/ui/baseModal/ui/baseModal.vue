@@ -4,7 +4,6 @@ import Dialog from 'primevue/dialog';
 const props = defineProps<{
 	visible: boolean;
 	header: string;
-	persistent: boolean;
 }>();
 
 const emit = defineEmits(['update:visible']);
@@ -16,8 +15,9 @@ const emit = defineEmits(['update:visible']);
 		@update:visible="(val) => emit('update:visible', val)"
 		:style="{ width: '25rem' }"
 		:header="props.header"
+		pt:content:class="!overflow-y-visible"
 		modal
 	>
-		<slot />
+		<slot></slot>
 	</Dialog>
 </template>

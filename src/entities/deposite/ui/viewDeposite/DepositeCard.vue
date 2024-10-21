@@ -10,10 +10,10 @@ const props = defineProps<{
 
 <template>
 	<Card>
-		<template #title>
+		<template #header>
 			{{ props.deposite.name }} - {{ props.deposite.startBalance }}
 			{{ props.deposite.currency }}
-		</template #content>
+		</template>
 		<template #content>
 			{{ props.deposite.comment }}
 		</template>

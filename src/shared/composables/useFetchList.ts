@@ -25,6 +25,6 @@ export function useFetchList<T>(fetchFunction: () => Promise<T[]>) {
 		items,
 		loading,
 		isEmpty,
-		fetchItems
+		fetchItems,
 	};
 }

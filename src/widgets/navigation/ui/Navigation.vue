@@ -7,16 +7,16 @@ const themeStore = themeModel();
 const routes = reactive([
 	{
 		name: 'Главная',
-		to: '/'
+		to: '/',
 	},
 	{
 		name: 'Финансы',
-		to: '/finance'
+		to: '/finance',
 	},
 	{
 		name: 'Счета',
-		to: '/deposite'
-	}
+		to: '/deposite',
+	},
 ]);
 </script>
 

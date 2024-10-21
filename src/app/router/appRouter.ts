@@ -9,16 +9,16 @@ export const appRouter = createRouter({
 			name: 'Home',
 			component: () => import('@/pages/home/ui/Home.vue'),
 			meta: {
-				layout: DefaultLayout
-			}
+				layout: DefaultLayout,
+			},
 		},
 		{
 			path: '/:pathMatch(.*)',
 			name: 'Not Found',
 			component: () => import('@/pages/not-found/ui/NotFound.vue'),
 			meta: {
-				layout: DefaultLayout
-			}
-		}
-	]
+				layout: DefaultLayout,
+			},
+		},
+	],
 });

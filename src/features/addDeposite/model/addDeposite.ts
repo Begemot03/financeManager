@@ -16,7 +16,7 @@ export const useAddDepositeStore = defineStore('addDeposite', () => {
 
 			depositeStore.deposites.push({
 				...newDeposite,
-				id: uuid()
+				id: uuid(),
 			});
 		} catch (e) {
 			console.log(`Ошибка при добавлении депозите: ${e}`);
@@ -27,6 +27,6 @@ export const useAddDepositeStore = defineStore('addDeposite', () => {
 
 	return {
 		addDeposite,
-		loading
+		loading,
 	};
 });

@@ -10,6 +10,6 @@ export const useThemeStore = defineStore('theme', () => {
 
 	return {
 		navShow,
-		toogleNavShow
+		toogleNavShow,
 	};
 });

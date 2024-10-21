@@ -29,6 +29,6 @@ export const useOperationStore = defineStore('operationStore', () => {
 		operations,
 		loading,
 		depositeOperations,
-		getOperationList
+		getOperationList,
 	};
 });

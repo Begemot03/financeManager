@@ -8,7 +8,7 @@ export const useNotificationStore = defineStore('notification', () => {
 	const notification = reactive<Notification>({
 		title: 'Ok',
 		subtitle: 'Okey',
-		type: 'success'
+		type: 'success',
 	});
 
 	let timeoutId: ReturnType<typeof setTimeout>;
@@ -17,7 +17,7 @@ export const useNotificationStore = defineStore('notification', () => {
 		title = 'Ok',
 		subtitle = 'All Good!',
 		type = 'success',
-		duration = 1500
+		duration = 1500,
 	}: Notification): void {
 		if (isOpen.value) {
 			clearTimeout(timeoutId);
@@ -41,6 +41,6 @@ export const useNotificationStore = defineStore('notification', () => {
 	return {
 		notify,
 		isOpen,
-		notification
+		notification,
 	};
 });

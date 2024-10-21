@@ -28,7 +28,7 @@ onMounted(() => {
 						name,
 						comment,
 						startBalance,
-						currency
+						currency,
 					} in depositeStore.deposites"
 					:title="name"
 					:subtitle="comment"
