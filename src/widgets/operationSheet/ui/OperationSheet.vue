@@ -1,17 +1,9 @@
 <script setup lang="ts">
-import { computed, onMounted, watch } from 'vue';
+import { onMounted } from 'vue';
 import { operationModel } from '@/entities/operation';
-import { currencyIcon } from '@/shared/lib/currency';
-import { SpinLoader } from '@/shared/ui/spinLoader';
-import { EmptyListItem } from '@/shared/ui/emptyListItem';
 
 //TODO: МБ надо вынести логику (есть composable useFetchList)
 const operationStore = operationModel();
-
-const isOperationsEmpty = computed(() => operationStore.operations.length == 0);
-const showEmptyListElement = computed(
-	() => isOperationsEmpty.value && !operationStore.loading
-);
 
 onMounted(() => {
 	operationStore.getOperationList();
@@ -19,35 +11,27 @@ onMounted(() => {
 </script>
 
 <template>
-	<v-card max-width="400">
-		<v-toolbar title="Операции" />
-		<v-list>
-			<template v-if="!isOperationsEmpty">
-				<v-list-item
-					v-for="{
-						id,
-						type,
-						sum,
-						currency,
-						category,
-						comment,
-					} in operationStore.operations"
-					:key="id"
-					:title="category"
-					:subtitle="comment"
-					density="compact"
-					:class="type == 'Доход' ? 'bg-teal' : 'bg-red'"
+	<DataView
+		:value="operationStore.operations"
+		dataKey="id"
+	>
+		<template #list="slotProps">
+			<div class="flex flex-col">
+				<div
+					v-for="(item, index) in slotProps.items"
+					:key="index"
 				>
-					<template #append>
-						<div>{{ sum }}</div>
-						<v-icon :icon="currencyIcon[currency]" />
-					</template>
-				</v-list-item>
-			</template>
-			<template v-else-if="showEmptyListElement">
-				<EmptyListItem />
-			</template>
-			<SpinLoader :loading="operationStore.loading" />
-		</v-list>
-	</v-card>
+					<div
+						class="flex flex-col sm:flex-row sm:items-center p-6 gap-4"
+						:class="{
+							'border-t border-surface-200 dark:border-surface-700':
+								index !== 0,
+						}"
+					>
+						{{ item.name }}
+					</div>
+				</div>
+			</div>
+		</template>
+	</DataView>
 </template>

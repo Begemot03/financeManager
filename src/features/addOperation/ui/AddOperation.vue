@@ -1,12 +1,17 @@
 <script setup lang="ts">
-import Button from 'primevue/button';
 import { addOperationModel } from '../model';
+
+const props = defineProps<{
+	label: string;
+}>();
 
 const addOperationStore = addOperationModel();
 </script>
 
 <template>
-	<Button :loading="addOperationStore.loading">
-		<slot />
-	</Button>
+	<Button
+		v-bind="props"
+		:loading="addOperationStore.loading"
+		type="submit"
+	/>
 </template>

@@ -1,3 +1,3 @@
 <template>
-	<v-list-item>Тут пока пусто</v-list-item>
+	<div>Тут пока пусто</div>
 </template>

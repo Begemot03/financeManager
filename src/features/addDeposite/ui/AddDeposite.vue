@@ -13,5 +13,6 @@ const addDepositeStore = addDepositeModel();
 	<Button
 		:label="props.label"
 		:loading="addDepositeStore.loading"
+		type="submit"
 	/>
 </template>

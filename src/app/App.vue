@@ -1,8 +1,7 @@
 <script setup lang="ts">
 import { DefaultLayout } from '@/shared/ui/layouts';
-import Notification from '@/shared/ui/notification/ui/Notification.vue';
-import { Navigation } from '@/widgets/navigation';
-import { Header } from '@/widgets/header';
+import { SideBar } from '@/widgets/sideBar';
+import { TopBar } from '@/widgets/topBar';
 import { computed } from 'vue';
 import { useRoute } from 'vue-router';
 
@@ -13,14 +12,14 @@ const layout = computed(() => route.meta.layout || DefaultLayout);
 <template>
 	<component :is="layout">
 		<template #header>
-			<Header />
+			<TopBar />
 		</template>
 		<template #navigation>
-			<Navigation />
+			<SideBar />
 		</template>
 		<template #default>
 			<RouterView />
 		</template>
 	</component>
-	<Notification />
+	<Toast />
 </template>

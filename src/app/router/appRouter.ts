@@ -7,7 +7,7 @@ export const appRouter = createRouter({
 		{
 			path: '/',
 			name: 'Home',
-			component: () => import('@/pages/home/ui/Home.vue'),
+			component: () => import('@/pages/home/ui/HomePage.vue'),
 			meta: {
 				layout: DefaultLayout,
 			},

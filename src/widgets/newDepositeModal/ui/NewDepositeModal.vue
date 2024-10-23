@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { BaseModal } from '@/shared/ui/baseModal';
 import { newDepositeModalModel } from '../model';
 import { AddDeposite, addDepositeModel } from '@/features/addDeposite';
 import type { Deposite } from '@/entities/deposite';
@@ -19,35 +18,37 @@ const submit = newDepositeModalStore.handleSubmit(async (values) => {
 		label="Создание счета"
 		@click="newDepositeModalStore.open"
 	/>
-	<BaseModal
+	<Dialog
 		v-model:visible="newDepositeModalStore.visible"
 		header="Новый счет"
-		:persistent="true"
+		class="w-96"
+		pt:content:class="!overflow-y-visible"
+		modal
 	>
 		<form @submit.prevent="submit">
 			<div class="mb-4">
 				<FloatLabel variant="on">
 					<InputText
 						v-model.trim="newDepositeModalStore.name.value"
-						id="username"
+						id="newdeposite__name"
 						class="w-full"
 						type="text"
 					/>
-					<label for="username">Название счета</label>
+					<label for="newdeposite__name">Название счета</label>
 				</FloatLabel>
 			</div>
-			<div class="flex gap-4 mb-4">
+			<div class="flex gap-2 mb-4">
 				<FloatLabel
 					variant="on"
 					class="w-full"
 				>
 					<InputNumber
 						v-model="newDepositeModalStore.startBalance.value"
+						id="newdeposite__startbalance"
 						class="inputnumbers"
-						id="startbalance"
 						inputId="integeronly"
 					/>
-					<label for="startbalance">Начальный баланс</label>
+					<label for="newdeposite__startbalance">Начальный баланс</label>
 				</FloatLabel>
 				<Select
 					v-model="newDepositeModalStore.currency.value"
@@ -64,16 +65,13 @@ const submit = newDepositeModalStore.handleSubmit(async (values) => {
 				/>
 			</div>
 			<div class="mb-8">
-				<FloatLabel
-					variant="on"
-					class="w-full"
-				>
+				<FloatLabel variant="on">
 					<Textarea
 						v-model.trim="newDepositeModalStore.comment.value"
-						id="comment"
+						id="newdeposite__comment"
 						class="w-full"
 					/>
-					<label for="comment">Комментарий</label>
+					<label for="newdeposite__comment">Комментарий</label>
 				</FloatLabel>
 			</div>
 			<div class="flex justify-end gap-2">
@@ -82,12 +80,8 @@ const submit = newDepositeModalStore.handleSubmit(async (values) => {
 					severity="secondary"
 					@click="newDepositeModalStore.close"
 				/>
-				<AddDeposite
-					label="Добавить"
-					color="blue"
-					@click="submit"
-				/>
+				<AddDeposite label="Добавить" />
 			</div>
 		</form>
-	</BaseModal>
+	</Dialog>
 </template>

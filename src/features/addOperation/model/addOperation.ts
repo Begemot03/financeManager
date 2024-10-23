@@ -1,8 +1,4 @@
-import {
-	operationModel,
-	type Operation,
-	type OperationType,
-} from '@/entities/operation';
+import { operationModel, type Operation } from '@/entities/operation';
 import { testFetching } from '@/shared/api';
 import { uuid } from '@/shared/lib/uuid';
 import { defineStore } from 'pinia';

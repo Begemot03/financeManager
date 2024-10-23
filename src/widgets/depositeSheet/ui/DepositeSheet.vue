@@ -2,7 +2,6 @@
 import { computed, onMounted } from 'vue';
 import { depositeModel } from '@/entities/deposite';
 import { currencyIcon } from '@/shared/lib/currency';
-import { SpinLoader } from '@/shared/ui/spinLoader';
 import { EmptyListItem } from '@/shared/ui/emptyListItem';
 
 //TODO: МБ надо вынести логику (есть composable useFetchList)
@@ -19,35 +18,28 @@ onMounted(() => {
 </script>
 
 <template>
-	<v-card max-width="400">
-		<v-toolbar title="Депозиты" />
-		<v-list>
-			<template v-if="!isDepositesEmpty">
-				<v-list-item
-					v-for="{
-						name,
-						comment,
-						startBalance,
-						currency,
-					} in depositeStore.deposites"
-					:title="name"
-					:subtitle="comment"
-					density="compact"
-				>
-					<template #append>
-						<div>{{ startBalance }}</div>
-						<v-icon
-							:icon="currencyIcon[currency]"
-							end
-						/>
-					</template>
-				</v-list-item>
-			</template>
-			<template v-else-if="showEmptyListElement">
-				<EmptyListItem />
-			</template>
-
-			<SpinLoader :loading="depositeStore.loading" />
-		</v-list>
-	</v-card>
+	<Panel header="Депозиты">
+		<template v-if="!isDepositesEmpty">
+			<div
+				v-for="{
+					id,
+					name,
+					comment,
+					startBalance,
+					currency,
+				} in depositeStore.deposites"
+				:key="id"
+			>
+				{{ `${name} ${comment} ${startBalance}` }}
+				<i
+					class="pi"
+					:class="currencyIcon[currency]"
+				></i>
+			</div>
+		</template>
+		<template v-else-if="showEmptyListElement">
+			<EmptyListItem />
+		</template>
+		<ProgressSpinner v-if="depositeStore.loading" />
+	</Panel>
 </template>

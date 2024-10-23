@@ -24,7 +24,7 @@ export const useNewOperationModal = defineStore('newOperationModal', () => {
 		},
 		validationSchema: {
 			name(value: string) {
-				if (value) return true;
+				if (value && value.length > 0) return true;
 				return 'Введите название операции.';
 			},
 			depositeId(value: number) {
@@ -45,7 +45,7 @@ export const useNewOperationModal = defineStore('newOperationModal', () => {
 				return 'Выберите валюту из списка.';
 			},
 			category(value: string) {
-				if (category) return true;
+				if (value) return true;
 				return 'Выберите категорию из списка.';
 			},
 		},

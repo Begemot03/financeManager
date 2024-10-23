@@ -1,7 +1,6 @@
 import { computed, ref } from 'vue';
-import type { Operation, OperationType } from './types';
+import type { Operation } from './types';
 import { defineStore } from 'pinia';
-import { Currency } from '@/shared/lib/currency';
 import { testFetching } from '@/shared/api';
 
 export const useOperationStore = defineStore('operationStore', () => {
