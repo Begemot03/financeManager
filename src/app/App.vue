@@ -11,11 +11,11 @@ const layout = computed(() => route.meta.layout || DefaultLayout);
 
 <template>
 	<component :is="layout">
-		<template #header>
-			<TopBar />
-		</template>
-		<template #navigation>
+		<template #sidebar>
 			<SideBar />
+		</template>
+		<template #topbar>
+			<TopBar />
 		</template>
 		<template #default>
 			<RouterView />
