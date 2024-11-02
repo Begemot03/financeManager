@@ -5,7 +5,7 @@ export const enum Currency {
 }
 
 export const currencyIcon = {
-	[Currency.RUB]: 'pi-dollar',
+	[Currency.RUB]: 'pi-paypal',
 	[Currency.USD]: 'pi-dollar',
 	[Currency.EUR]: 'pi-euro',
 };

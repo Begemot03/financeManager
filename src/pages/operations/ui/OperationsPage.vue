@@ -1,3 +1,7 @@
+<script setup lang="ts">
+import OperationSheet from '@/widgets/operationSheet/ui/OperationSheet.vue';
+</script>
+
 <template>
-	<div>Список операций</div>
+	<OperationSheet></OperationSheet>
 </template>

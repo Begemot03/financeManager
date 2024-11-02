@@ -2,9 +2,31 @@ import { computed, ref } from 'vue';
 import type { Operation } from './types';
 import { defineStore } from 'pinia';
 import { testFetching } from '@/shared/api';
+import { Currency } from '@/shared/lib/currency';
 
 export const useOperationStore = defineStore('operationStore', () => {
-	const operations = ref<Operation[]>([]);
+	const operations = ref<Operation[]>([
+		{
+			id: 0,
+			depositeId: 0,
+			name: 'Велосипед',
+			type: 'Доход',
+			sum: 1000,
+			currency: Currency.RUB,
+			category: 'Сумка',
+			comment: 'Купил просто так'
+		},
+		{
+			id: 1,
+			depositeId: 0,
+			name: 'Машина',
+			type: 'Расход',
+			sum: 1000,
+			currency: Currency.RUB,
+			category: 'Пост',
+			comment: 'Купил просто так'
+		}
+	]);
 	const loading = ref(false);
 
 	const depositeOperations = computed(() => {
