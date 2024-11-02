@@ -11,6 +11,7 @@ declare module 'vue' {
     Badge: typeof import('primevue/badge')['default']
     Breadcrumb: typeof import('primevue/breadcrumb')['default']
     Button: typeof import('primevue/button')['default']
+    Chip: typeof import('primevue/chip')['default']
     DataView: typeof import('primevue/dataview')['default']
     Dialog: typeof import('primevue/dialog')['default']
     FloatLabel: typeof import('primevue/floatlabel')['default']

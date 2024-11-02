@@ -5,6 +5,8 @@ const home = ref({
 	icon: 'pi pi-home',
 });
 
+
+
 const path = ref([
 	{ label: 'Статистика' },
 	{ label: 'Отчеты' },

@@ -1,3 +1,3 @@
-import Operations from './ui/Operations.vue';
+import OperationsPage from './ui/OperationsPage.vue';
 
-export { Operations };
+export { OperationsPage };

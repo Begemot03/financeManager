@@ -7,6 +7,10 @@ const themeStore = themeModel();
 
 const items = reactive([
 	{
+		name: 'Дашборд',
+		to: routes.DASHBOARD_PAGE,
+	},
+	{
 		separator: true,
 	},
 	{
