@@ -1,15 +1,16 @@
 <script setup lang="ts">
 import { themeModel } from '@/entities/theme';
+import { routes } from '@/shared/config';
 import { reactive } from 'vue';
 
 const themeStore = themeModel();
 
-const routes = reactive([
+const items = reactive([
 	{
 		separator: true,
 	},
 	{
-		label: "Действия",
+		label: 'Действия',
 		items: [
 			{
 				name: 'Создать операцию',
@@ -22,22 +23,22 @@ const routes = reactive([
 		],
 	},
 	{
-		separator: true
+		separator: true,
 	},
 	{
-		label: "Статистика",
+		label: 'Статистика',
 		items: [
 			{
 				name: 'Все операции',
-				to: 'finance'
-			}
+				to: routes.OPERATIONS_PAGE,
+			},
 		],
 	},
 ]);
 </script>
 
 <template>
-	<Menu :model="routes">
+	<Menu :model="items">
 		<template #start>
 			<span class="inline-flex items-center gap-2 px-4 py-2">
 				<i class="pi pi-wallet"></i>
@@ -45,8 +46,17 @@ const routes = reactive([
 			</span>
 		</template>
 		<template #item="{ item, props }">
-			<RouterLink :to="item.to" v-slot="{ href, navigate }" custom>
-				<a v-ripple :href="href" v-bind="props.action" @click="navigate">
+			<RouterLink
+				:to="item.to"
+				v-slot="{ href, navigate }"
+				custom
+			>
+				<a
+					v-ripple
+					:href="href"
+					v-bind="props.action"
+					@click="navigate"
+				>
 					<span>{{ item.name }}</span>
 				</a>
 			</RouterLink>
