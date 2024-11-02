@@ -1,17 +1,13 @@
 <script setup>
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
+import { useRoute } from 'vue-router';
+
+const route = useRoute();
+const path = computed(() => [{ label: route.name }]);
 
 const home = ref({
 	icon: 'pi pi-home',
 });
-
-
-
-const path = ref([
-	{ label: 'Статистика' },
-	{ label: 'Отчеты' },
-	{ label: 'За последний месяц' },
-]);
 </script>
 
 <template>
