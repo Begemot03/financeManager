@@ -1,1 +1,3 @@
-export * from './ui';
+import DepositeSheet from './ui/DepositeSheet.vue';
+
+export { DepositeSheet };

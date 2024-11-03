@@ -1,11 +1,27 @@
 import { defineStore } from 'pinia';
 import { computed, ref } from 'vue';
-import type { Deposite } from './types';
-import { operationModel } from '@/entities/operation/model';
+import { operationModel } from '@/entities/operation';
 import { testFetching } from '@/shared/api';
+import { Currency } from '@/shared/lib/currency';
+
+export type DepositeType = {
+	id: number;
+	name: string;
+	startBalance: number;
+	currency?: Currency;
+	comment: string;
+};
 
 export const useDepositeStore = defineStore('deposite', () => {
-	const deposites = ref<Deposite[]>([]);
+	const deposites = ref<DepositeType[]>([
+		{
+			id: 0,
+			name: 'Сбер',
+			startBalance: 0,
+			currency: Currency.RUB,
+			comment: '',
+		},
+	]);
 	const loading = ref(false);
 
 	const depositeBalance = computed(() => {

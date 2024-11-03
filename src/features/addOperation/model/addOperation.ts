@@ -1,30 +1,25 @@
-import { operationModel, type Operation } from '@/entities/operation';
+import { operationModel, type OperationType } from '@/entities/operation';
 import { testFetching } from '@/shared/api';
+import { Currency } from '@/shared/lib/currency';
 import { uuid } from '@/shared/lib/uuid';
 import { defineStore } from 'pinia';
 import { ref } from 'vue';
 
-export const useAddOperationFeatureStore = defineStore('addOperation', () => {
+export const useAddOperationStore = defineStore('addOperation', () => {
 	const operationStore = operationModel();
 	const loading = ref(false);
 
-	async function addOperation(newOperation: Operation) {
-		const data = { ...newOperation };
+	async function addOperation(newOperation: OperationType) {
+		loading.value = true;
 
 		try {
-			loading.value = true;
 			await testFetching(1500);
 			await operationStore.getOperationList();
 
 			operationStore.operations.push({
+				...newOperation,
 				id: uuid(),
-				name: data.name,
-				sum: data.sum,
-				type: data.type,
-				depositeId: data.depositeId,
-				category: data.category,
-				comment: data.comment,
-				currency: data.currency,
+				currency: Currency.RUB,
 			});
 		} catch (e) {
 			console.log(`Произошла ошибка при добавлении операции ${e}`);

@@ -1,2 +1,4 @@
-export * from './ui';
-export * from './model';
+import AddOperation from './ui/AddOperation.vue';
+
+export { useAddOperationStore as addOperationModel } from './model/addOperation';
+export { AddOperation };

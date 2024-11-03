@@ -1,13 +1,14 @@
 <script setup lang="ts">
-import { newOperationModalModel } from '../model';
+import { useNewOperationModal } from '../model/newOperationModal';
 import { AddOperation, addOperationModel } from '@/features/addOperation';
-import type { Operation } from '@/entities/operation';
+import type { OperationType } from '@/entities/operation';
 
-const newOperationModalStore = newOperationModalModel();
+const newOperationModalStore = useNewOperationModal();
 const addOperationStore = addOperationModel();
 
 const submit = newOperationModalStore.handleSubmit(async (values) => {
-	await addOperationStore.addOperation(values as Operation);
+	console.log(1);
+	await addOperationStore.addOperation(values as OperationType);
 	newOperationModalStore.handleReset();
 	newOperationModalStore.close();
 });
@@ -15,8 +16,9 @@ const submit = newOperationModalStore.handleSubmit(async (values) => {
 
 <template>
 	<Button
-		label="Новая операция"
+		label="Добавить операцию"
 		@click="newOperationModalStore.open"
+		severity="secondary"
 	/>
 	<Dialog
 		v-model:visible="newOperationModalStore.visible"
@@ -50,9 +52,9 @@ const submit = newOperationModalStore.handleSubmit(async (values) => {
 					<label for="sum">Сумма операции</label>
 				</FloatLabel>
 				<Select
-					v-model="newOperationModalStore.currency.value"
-					:options="['RUB', 'USD']"
-					placeholder="Валюта"
+					v-model="newOperationModalStore.type.value"
+					:options="['Доход', 'Расход']"
+					placeholder="Тип операции"
 				/>
 			</div>
 			<div class="mb-4 flex gap-2">
@@ -64,13 +66,6 @@ const submit = newOperationModalStore.handleSubmit(async (values) => {
 					placeholder="Счет списания"
 					class="w-full"
 				/>
-				<Select
-					v-model="newOperationModalStore.type.value"
-					:options="['Доход', 'Расход']"
-					placeholder="Тип операции"
-				/>
-			</div>
-			<div class="mb-4">
 				<Select
 					v-model="newOperationModalStore.category.value"
 					:options="['Еда', 'Развлечения']"

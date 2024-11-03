@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import type { Operation } from '../../model';
+import type { OperationType } from '@/entities/operation/model/operation';
 
 const props = defineProps<{
-	data: Operation;
+	data: OperationType;
 }>();
 </script>
 

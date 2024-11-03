@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { defineProps } from 'vue';
-import type { Deposite } from '@/entities/deposite';
+import type { DepositeType } from '@/entities/deposite';
 import Card from 'primevue/card';
 
 const props = defineProps<{
-	deposite: Deposite;
+	deposite: DepositeType;
 }>();
 </script>
 

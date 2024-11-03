@@ -1,16 +1,7 @@
 <script setup lang="ts">
-import { computed, onMounted, ref } from 'vue';
-import {
-	operationModel,
-	type Operation,
-	type OperationType,
-} from '@/entities/operation';
+import { onMounted, ref } from 'vue';
+import { operationModel, type OperationType } from '@/entities/operation';
 import type { SelectChangeEvent } from 'primevue/select';
-import { currencyIcon } from '@/shared/lib/currency';
-
-// const props = defineProps<
-// 	filters
-// >();
 
 const operationStore = operationModel();
 
@@ -36,14 +27,6 @@ const onFilterChange = (e: SelectChangeEvent) => {
 	sortkey.value = sortValue;
 };
 
-const sumBg = (item: Operation) => {
-	return {
-		'!bg-green-700': item.type == 'Доход',
-		'!bg-red-700': item.type != 'Доход',
-	};
-};
-
-
 onMounted(() => {
 	operationStore.getOperationList();
 });
@@ -68,7 +51,7 @@ onMounted(() => {
 		<template #list="items">
 			<div class="flex flex-col">
 				<div
-					v-for="(item, index) in items.items as Operation[]"
+					v-for="(item, index) in items.items as OperationType[]"
 					:key="index"
 				>
 					<div
@@ -79,14 +62,7 @@ onMounted(() => {
 						}"
 					>
 						<div>{{ item.name }}</div>
-						<Chip
-							:class="sumBg(item)"
-							:icon="`pi ${currencyIcon[item.currency]}`"
-							:label="item.sum.toString()"
-						></Chip>
-						<Chip
-							:label="item.category"
-						></Chip>
+						<Chip :label="item.category"></Chip>
 					</div>
 				</div>
 			</div>
