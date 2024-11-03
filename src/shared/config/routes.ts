@@ -1,4 +1,5 @@
 export const routes = {
-    OPERATIONS_PAGE: '/operations',
-    DASHBOARD_PAGE: '/',
+	OPERATIONS_PAGE: '/operations',
+	DASHBOARD_PAGE: '/',
+	EXPENSES_PAGE: '/expenses',
 };

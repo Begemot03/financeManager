@@ -1,9 +1,6 @@
 <script setup lang="ts">
-import { themeModel } from '@/entities/theme';
 import { routes } from '@/shared/config';
 import { reactive } from 'vue';
-
-const themeStore = themeModel();
 
 const items = reactive([
 	{
@@ -35,6 +32,10 @@ const items = reactive([
 			{
 				name: 'Все операции',
 				to: routes.OPERATIONS_PAGE,
+			},
+			{
+				name: 'Траты',
+				to: routes.EXPENSES_PAGE,
 			},
 		],
 	},

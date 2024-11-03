@@ -12,7 +12,12 @@ export const appRouter = createRouter({
 		{
 			path: routes.OPERATIONS_PAGE,
 			name: 'Operation',
-			component: () => import("@/pages/operations/ui/OperationsPage.vue"),
+			component: () => import('@/pages/operations/ui/OperationsPage.vue'),
+		},
+		{
+			path: routes.EXPENSES_PAGE,
+			name: 'Expenses',
+			component: () => import('@/pages/expenses/ui/ExpensesPage.vue'),
 		},
 		{
 			path: '/:pathMatch(.*)',
