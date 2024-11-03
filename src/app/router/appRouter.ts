@@ -10,9 +10,9 @@ export const appRouter = createRouter({
 			component: () => import('@/pages/dashboard/ui/DashboardPage.vue'),
 		},
 		{
-			path: routes.OPERATIONS_PAGE,
-			name: 'Operation',
-			component: () => import('@/pages/operations/ui/OperationsPage.vue'),
+			path: routes.TRANSACTIONS_PAGE,
+			name: 'Transactions',
+			component: () => import('@/pages/transactions/ui/TransactionsPage.vue'),
 		},
 		{
 			path: routes.EXPENSES_PAGE,

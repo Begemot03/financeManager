@@ -7,4 +7,4 @@ export const THEME: Record<string, TTheme> = {
 
 export const ASSETS_PATH = '@/shared/assets/';
 
-export { routes } from "./routes";
+export { routes } from './routes';

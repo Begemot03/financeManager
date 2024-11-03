@@ -11,10 +11,12 @@ const depositeStore = depositeModel();
 const selectedCategories = ref<CategoryType[]>([]);
 const expenses = computed(() =>
 	selectedCategories.value.length == 0
-		? operationStore.expenses
-		: operationStore.expenses.filter((op) =>
-				selectedCategories.value.some((cat) => cat.name == op.category)
-			)
+		? operationStore.operationsByType('Расход')
+		: operationStore
+				.operationsByType('Расход')
+				.filter((op) =>
+					selectedCategories.value.some((cat) => cat.name == op.category)
+				)
 );
 </script>
 
@@ -44,11 +46,11 @@ const expenses = computed(() =>
 				field="sum"
 				header="Сумма операции"
 				sortable
-			></Column>
-			<Column
-				field="currency"
-				header="Валюта"
-			></Column>
+			>
+				<template #body="slotProps">
+					{{ slotProps.data.sum + ' ' + 'RUB' }}
+				</template>
+			</Column>
 			<Column
 				field="category"
 				header="Категория"

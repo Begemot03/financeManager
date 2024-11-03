@@ -1,11 +1,24 @@
 import { computed, ref } from 'vue';
-import type { Operation } from './types';
 import { defineStore } from 'pinia';
 import { testFetching } from '@/shared/api';
 import { Currency } from '@/shared/lib/currency';
 
+export type OperationEventType = 'Доход' | 'Расход';
+
+export type OperationType = {
+	id: number;
+	depositeId: number;
+	name: string;
+	type: OperationEventType;
+	sum: number;
+	currency?: Currency;
+	creationDate?: Date;
+	category: string;
+	comment?: string;
+};
+
 export const useOperationStore = defineStore('operationStore', () => {
-	const operations = ref<Operation[]>([
+	const operations = ref<OperationType[]>([
 		{
 			id: 0,
 			depositeId: 0,
@@ -14,7 +27,6 @@ export const useOperationStore = defineStore('operationStore', () => {
 			sum: 1000,
 			currency: Currency.RUB,
 			category: 'Сумка',
-			comment: 'Купил просто так',
 		},
 		{
 			id: 1,
@@ -24,7 +36,6 @@ export const useOperationStore = defineStore('operationStore', () => {
 			sum: 100,
 			currency: Currency.RUB,
 			category: 'Пост',
-			comment: 'Купил просто так',
 		},
 	]);
 	const loading = ref(false);
@@ -35,17 +46,20 @@ export const useOperationStore = defineStore('operationStore', () => {
 		};
 	});
 
-	const expenses = computed(() =>
-		operations.value.filter((op) => op.type == 'Расход')
+	const operationsByType = computed(() => (by?: OperationEventType) => {
+		if (by == undefined) return operations.value;
+		return operations.value.filter((op) => op.type == by);
+	});
+
+	const operationsTotal = computed(() =>
+		operationsByType.value().reduce((acum, cur) => acum + cur.sum, 0)
 	);
-	const incomes = computed(() =>
-		operations.value.filter((op) => op.type == 'Доход')
-	);
+
 	const expensesTotal = computed(() =>
-		expenses.value.reduce((acum, cur) => acum + cur.sum, 0)
+		operationsByType.value('Расход').reduce((acum, cur) => acum + cur.sum, 0)
 	);
 	const incomesTotal = computed(() =>
-		incomes.value.reduce((acum, cur) => acum + cur.sum, 0)
+		operationsByType.value('Доход').reduce((acum, cur) => acum + cur.sum, 0)
 	);
 
 	async function getOperationList() {
@@ -63,8 +77,8 @@ export const useOperationStore = defineStore('operationStore', () => {
 		operations,
 		loading,
 		depositeOperations,
-		expenses,
-		incomes,
+		operationsByType,
+		operationsTotal,
 		expensesTotal,
 		incomesTotal,
 		getOperationList,

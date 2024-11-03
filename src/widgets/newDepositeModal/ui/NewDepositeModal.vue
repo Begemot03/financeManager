@@ -1,13 +1,13 @@
 <script setup lang="ts">
-import { newDepositeModalModel } from '../model';
+import { useNewDepositeModal } from '../model/newDepositeModal';
 import { AddDeposite, addDepositeModel } from '@/features/addDeposite';
-import type { Deposite } from '@/entities/deposite';
+import type { DepositeType } from '@/entities/deposite';
 
 const addDepositeStore = addDepositeModel();
-const newDepositeModalStore = newDepositeModalModel();
+const newDepositeModalStore = useNewDepositeModal();
 
 const submit = newDepositeModalStore.handleSubmit(async (values) => {
-	await addDepositeStore.addDeposite(values as Deposite);
+	await addDepositeStore.addDeposite(values as DepositeType);
 	newDepositeModalStore.handleReset();
 	newDepositeModalStore.close();
 });
@@ -15,8 +15,9 @@ const submit = newDepositeModalStore.handleSubmit(async (values) => {
 
 <template>
 	<Button
-		label="Создание счета"
+		label="Добавить счет"
 		@click="newDepositeModalStore.open"
+		severity="secondary"
 	/>
 	<Dialog
 		v-model:visible="newDepositeModalStore.visible"
@@ -32,7 +33,6 @@ const submit = newDepositeModalStore.handleSubmit(async (values) => {
 						v-model.trim="newDepositeModalStore.name.value"
 						id="newdeposite__name"
 						class="w-full"
-						type="text"
 					/>
 					<label for="newdeposite__name">Название счета</label>
 				</FloatLabel>
@@ -50,19 +50,6 @@ const submit = newDepositeModalStore.handleSubmit(async (values) => {
 					/>
 					<label for="newdeposite__startbalance">Начальный баланс</label>
 				</FloatLabel>
-				<Select
-					v-model="newDepositeModalStore.currency.value"
-					:options="['RUB', 'USD']"
-					placeholder="Валюта"
-				/>
-			</div>
-			<div class="mb-4">
-				<Select
-					v-model="newDepositeModalStore.type.value"
-					:options="['Наличные', 'Кредитка']"
-					placeholder="Тип счета"
-					class="w-full"
-				/>
 			</div>
 			<div class="mb-8">
 				<FloatLabel variant="on">

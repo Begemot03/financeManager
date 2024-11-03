@@ -1,17 +1,16 @@
 <script setup lang="ts">
-import { useAddOperationStore } from '../model/addOperation';
+import { moneyTransferModel } from '@/features/moneyTransfer';
 
+const moneyTransferStore = moneyTransferModel();
 const props = defineProps<{
 	label: string;
 }>();
-
-const addOperationStore = useAddOperationStore();
 </script>
 
 <template>
 	<Button
 		v-bind="props"
-		:loading="addOperationStore.loading"
+		:loading="moneyTransferStore.loading"
 		severity="contrast"
 		type="submit"
 	/>

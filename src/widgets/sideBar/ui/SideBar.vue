@@ -30,8 +30,8 @@ const items = reactive([
 		label: 'Статистика',
 		items: [
 			{
-				name: 'Все операции',
-				to: routes.OPERATIONS_PAGE,
+				name: 'Транзакции',
+				to: routes.TRANSACTIONS_PAGE,
 			},
 			{
 				name: 'Расходы',

@@ -1,20 +1,22 @@
 <script setup lang="ts">
 import { categoryModel } from '@/entities/category';
 import type { CategoryType } from '@/entities/category/model/categoryModel';
-import { computed, ref, watch } from 'vue';
+import { computed } from 'vue';
 
 const props = defineProps<{
 	selected: CategoryType[];
 }>();
 
-const emits = defineEmits(['update:selected']);
+const emits = defineEmits<{
+	(e: 'update:selected', selected: CategoryType[]): void;
+}>();
 
 const categoryStore = categoryModel();
 const categories = computed(() => categoryStore.categories);
 </script>
 <template>
 	<Listbox
-		v-model="props.selected"
+		:model-value="props.selected"
 		@update:model-value="(v) => emits('update:selected', v)"
 		:options="categories"
 		option-label="name"
@@ -22,5 +24,9 @@ const categories = computed(() => categoryStore.categories);
 		multiple
 		:highlight-on-select="true"
 		class="w-full md:w-56"
-	></Listbox>
+	>
+		<template #header>
+			<span class="font-bold">Категории</span>
+		</template>
+	</Listbox>
 </template>

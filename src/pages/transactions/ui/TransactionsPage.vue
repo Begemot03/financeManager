@@ -3,40 +3,39 @@ import { CategoryList, CategoryTag } from '@/entities/category';
 import type { CategoryType } from '@/entities/category/model/categoryModel';
 import { depositeModel } from '@/entities/deposite';
 import { operationModel } from '@/entities/operation';
+import { NewDepositeModal } from '@/widgets/newDepositeModal';
+import NewMoneyTransferModal from '@/widgets/newMoneyTransferModal/ui/NewMoneyTransferModal.vue';
+import { NewOperationModal } from '@/widgets/newOperationModal';
 import { computed, ref } from 'vue';
 
 const operationStore = operationModel();
 const depositeStore = depositeModel();
 
 const selectedCategories = ref<CategoryType[]>([]);
-const incomes = computed(() =>
+const transactions = computed(() =>
 	selectedCategories.value.length == 0
-		? operationStore.operationsByType('Доход')
-		: operationStore
-				.operationsByType('Доход')
-				.filter((op) =>
-					selectedCategories.value.some((cat) => cat.name == op.category)
-				)
+		? operationStore.operations
+		: operationStore.operations.filter((op) =>
+				selectedCategories.value.some((cat) => cat.name == op.category)
+			)
 );
 </script>
 
 <template>
 	<div class="flex gap-4 flex-col md:flex-row items-start">
 		<div class="flex gap-2 flex-col">
-			<span
-				class="border border-surface-700 rounded bg-primary p-4 font-bold text-xl"
-			>
-				Общая сумма: {{ operationStore.incomesTotal }}
-			</span>
-			<CategoryList v-model:selected="selectedCategories"></CategoryList>
+			<NewOperationModal />
+			<NewDepositeModal />
+			<NewMoneyTransferModal />
+			<CategoryList v-model:selected="selectedCategories" />
 		</div>
 		<DataTable
-			:value="incomes"
+			:value="transactions"
 			removable-sort
 			class="w-full"
 		>
 			<template #header>
-				<span class="font-bold text-xl">Доходы</span>
+				<span class="font-bold text-xl">Расходы</span>
 			</template>
 			<Column
 				field="name"
@@ -48,7 +47,15 @@ const incomes = computed(() =>
 				sortable
 			>
 				<template #body="slotProps">
-					{{ slotProps.data.sum + ' ' + 'RUB' }}
+					<span
+						:class="{
+							'text-primary': slotProps.data.type == 'Доход',
+							'text-red-700': slotProps.data.type != 'Доход',
+						}"
+						>{{
+							`${slotProps.data.type == 'Доход' ? '+' : '-'} ${slotProps.data.sum} RUB`
+						}}</span
+					>
 				</template>
 			</Column>
 			<Column

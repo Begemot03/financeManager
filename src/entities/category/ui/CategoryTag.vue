@@ -1,13 +1,15 @@
 <script setup lang="ts">
-import type { OperationType } from '@/entities/operation';
+import type { OperationEventType } from '@/entities/operation';
 import { computed } from 'vue';
 
 const props = defineProps<{
 	name: string;
-	type: OperationType;
+	type: OperationEventType;
 }>();
 
-const severity = computed(() => (props.type == 'Доход' ? 'primary' : 'danger'));
+const severity = computed(() =>
+	props.type === 'Доход' ? 'primary' : 'danger'
+);
 </script>
 <template>
 	<Tag

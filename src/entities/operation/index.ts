@@ -1,4 +1,3 @@
-export type * from './model';
 export * from './ui';
-
-export { operationModel } from './model';
+export type { OperationEventType, OperationType } from './model/operation';
+export { useOperationStore as operationModel } from './model/operation';
