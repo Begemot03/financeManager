@@ -10,22 +10,22 @@ export const useOperationStore = defineStore('operationStore', () => {
 			id: 0,
 			depositeId: 0,
 			name: 'Велосипед',
-			type: 'Доход',
+			type: 'Расход',
 			sum: 1000,
 			currency: Currency.RUB,
 			category: 'Сумка',
-			comment: 'Купил просто так'
+			comment: 'Купил просто так',
 		},
 		{
 			id: 1,
 			depositeId: 0,
 			name: 'Машина',
 			type: 'Расход',
-			sum: 1000,
+			sum: 100,
 			currency: Currency.RUB,
 			category: 'Пост',
-			comment: 'Купил просто так'
-		}
+			comment: 'Купил просто так',
+		},
 	]);
 	const loading = ref(false);
 
@@ -34,6 +34,16 @@ export const useOperationStore = defineStore('operationStore', () => {
 			return operations.value.filter((op) => op.depositeId === depositeId);
 		};
 	});
+
+	const expensesTotal = computed(() =>
+		operations.value.reduce((acum, cur) => acum + cur.sum, 0)
+	);
+	const expenses = computed(() =>
+		operations.value.filter((op) => op.type == 'Расход')
+	);
+	const incomes = computed(() =>
+		operations.value.filter((op) => op.type == 'Доход')
+	);
 
 	async function getOperationList() {
 		try {
@@ -50,6 +60,9 @@ export const useOperationStore = defineStore('operationStore', () => {
 		operations,
 		loading,
 		depositeOperations,
+		expensesTotal,
+		expenses,
+		incomes,
 		getOperationList,
 	};
 });

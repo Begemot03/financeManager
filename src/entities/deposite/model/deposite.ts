@@ -3,9 +3,19 @@ import { computed, ref } from 'vue';
 import type { Deposite } from './types';
 import { operationModel } from '@/entities/operation/model';
 import { testFetching } from '@/shared/api';
+import { Currency } from '@/shared/lib/currency';
 
 export const useDepositeStore = defineStore('deposite', () => {
-	const deposites = ref<Deposite[]>([]);
+	const deposites = ref<Deposite[]>([
+		{
+			id: 0,
+			name: 'Сбер',
+			type: 'Наличные',
+			startBalance: 0,
+			currency: Currency.RUB,
+			comment: ''
+		}
+	]);
 	const loading = ref(false);
 
 	const depositeBalance = computed(() => {
