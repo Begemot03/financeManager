@@ -34,8 +34,12 @@ const items = reactive([
 				to: routes.OPERATIONS_PAGE,
 			},
 			{
-				name: 'Траты',
+				name: 'Расходы',
 				to: routes.EXPENSES_PAGE,
+			},
+			{
+				name: 'Доходы',
+				to: routes.INCOMES_PAGE,
 			},
 		],
 	},

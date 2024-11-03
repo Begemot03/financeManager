@@ -9,10 +9,10 @@ const operationStore = operationModel();
 const depositeStore = depositeModel();
 
 const selectedCategories = ref<CategoryType[]>([]);
-const expenses = computed(() =>
+const incomes = computed(() =>
 	selectedCategories.value.length == 0
-		? operationStore.expenses
-		: operationStore.expenses.filter((op) =>
+		? operationStore.incomes
+		: operationStore.incomes.filter((op) =>
 				selectedCategories.value.some((cat) => cat.name == op.category)
 			)
 );
@@ -22,19 +22,19 @@ const expenses = computed(() =>
 	<div class="flex gap-4 flex-col md:flex-row items-start">
 		<div class="flex gap-2 flex-col">
 			<span
-				class="border border-surface-700 rounded bg-red-900 p-4 font-bold text-xl"
+				class="border border-surface-700 rounded bg-primary p-4 font-bold text-xl"
 			>
-				Общая сумма: {{ operationStore.expensesTotal }}
+				Общая сумма: {{ operationStore.incomesTotal }}
 			</span>
 			<CategoryList v-model:selected="selectedCategories"></CategoryList>
 		</div>
 		<DataTable
-			:value="expenses"
+			:value="incomes"
 			removable-sort
 			class="w-full"
 		>
 			<template #header>
-				<span class="font-bold text-xl">Расходы</span>
+				<span class="font-bold text-xl">Доходы</span>
 			</template>
 			<Column
 				field="name"

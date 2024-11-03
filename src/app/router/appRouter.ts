@@ -20,6 +20,11 @@ export const appRouter = createRouter({
 			component: () => import('@/pages/expenses/ui/ExpensesPage.vue'),
 		},
 		{
+			path: routes.INCOMES_PAGE,
+			name: 'Incomes',
+			component: () => import('@/pages/incomes/ui/IncomesPage.vue'),
+		},
+		{
 			path: '/:pathMatch(.*)',
 			name: 'Not Found',
 			component: () => import('@/pages/not-found/ui/NotFound.vue'),

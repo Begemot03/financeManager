@@ -20,7 +20,7 @@ export const useOperationStore = defineStore('operationStore', () => {
 			id: 1,
 			depositeId: 0,
 			name: 'Машина',
-			type: 'Расход',
+			type: 'Доход',
 			sum: 100,
 			currency: Currency.RUB,
 			category: 'Пост',
@@ -35,14 +35,17 @@ export const useOperationStore = defineStore('operationStore', () => {
 		};
 	});
 
-	const expensesTotal = computed(() =>
-		operations.value.reduce((acum, cur) => acum + cur.sum, 0)
-	);
 	const expenses = computed(() =>
 		operations.value.filter((op) => op.type == 'Расход')
 	);
 	const incomes = computed(() =>
 		operations.value.filter((op) => op.type == 'Доход')
+	);
+	const expensesTotal = computed(() =>
+		expenses.value.reduce((acum, cur) => acum + cur.sum, 0)
+	);
+	const incomesTotal = computed(() =>
+		incomes.value.reduce((acum, cur) => acum + cur.sum, 0)
 	);
 
 	async function getOperationList() {
@@ -60,9 +63,10 @@ export const useOperationStore = defineStore('operationStore', () => {
 		operations,
 		loading,
 		depositeOperations,
-		expensesTotal,
 		expenses,
 		incomes,
+		expensesTotal,
+		incomesTotal,
 		getOperationList,
 	};
 });
