@@ -19,6 +19,7 @@ export const useNewOperationModal = defineStore('newOperationModal', () => {
 			sum: 0,
 			category: 'Еда',
 			comment: '',
+			date: new Date(),
 		},
 		validationSchema: {
 			name(value: string) {
@@ -51,6 +52,7 @@ export const useNewOperationModal = defineStore('newOperationModal', () => {
 	const sum = useField<number>('sum');
 	const category = useField<string>('category');
 	const comment = useField<string>('comment');
+	const date = useField<Date>('date');
 
 	const visible = ref(false);
 
@@ -68,6 +70,7 @@ export const useNewOperationModal = defineStore('newOperationModal', () => {
 		type,
 		sum,
 		category,
+		date,
 		comment,
 		listOfDeposites,
 		visible,

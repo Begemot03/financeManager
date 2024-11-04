@@ -73,6 +73,17 @@ const submit = newOperationModalStore.handleSubmit(async (values) => {
 					class="w-full"
 				/>
 			</div>
+			<div class="mb-4">
+				<FloatLabel variant="on">
+					<DatePicker
+						v-model="newOperationModalStore.date.value"
+						showIcon
+						fluid
+						inputId="newoperation__operationDate"
+					></DatePicker>
+					<label for="newoperation__operationDate">Дата операции</label>
+				</FloatLabel>
+			</div>
 			<div class="mb-8">
 				<FloatLabel variant="on">
 					<Textarea
