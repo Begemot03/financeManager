@@ -1,72 +1,81 @@
 <script setup lang="ts">
-import { onMounted, ref } from 'vue';
-import { operationModel, type OperationType } from '@/entities/operation';
-import type { SelectChangeEvent } from 'primevue/select';
+import { depositeModel } from '@/entities/deposite';
+import type { OperationType } from '@/entities/operation';
+import { CategoryTag } from '@/entities/category';
 
-const operationStore = operationModel();
+const props = defineProps<{
+	transactions: OperationType[];
+}>();
 
-const sortkey = ref(null);
-const sortOrder = ref(1);
-const sortField = ref('');
-const sortOptions = [
-	{ label: 'Новее', value: '!id' },
-	{ label: 'Старее', value: 'id' },
-];
-
-const onFilterChange = (e: SelectChangeEvent) => {
-	const value = e.value.value;
-	const sortValue = e.value;
-
-	if (value.indexOf('!') == 0) {
-		sortOrder.value = -1;
-		sortField.value = value.substring(1, value.lenght);
-	} else {
-		sortOrder.value = 1;
-		sortField.value = value;
-	}
-	sortkey.value = sortValue;
-};
-
-onMounted(() => {
-	operationStore.getOperationList();
-});
+const depositeStore = depositeModel();
 </script>
-
 <template>
-	<DataView
-		:value="operationStore.operations"
-		:sortOrder="sortOrder"
-		:sortField="sortField"
-		dataKey="id"
+	<DataTable
+		:value="props.transactions"
+		removable-sort
+		class="w-full"
 	>
 		<template #header>
-			<Select
-				v-model="sortkey"
-				:options="sortOptions"
-				optionLabel="label"
-				placeholder="Сортировать по"
-				@change="onFilterChange"
-			></Select>
+			<span class="font-bold text-xl">Расходы</span>
 		</template>
-		<template #list="items">
-			<div class="flex flex-col">
-				<div
-					v-for="(item, index) in items.items as OperationType[]"
-					:key="index"
+		<Column
+			field="name"
+			header="Название операции"
+		></Column>
+		<Column
+			field="creationDate"
+			header="Дата"
+		>
+			<template #body="slotProps">
+				<span>{{
+					(slotProps.data.creationDate as Date).toLocaleDateString('ru-RU')
+				}}</span>
+			</template>
+		</Column>
+		<Column
+			field="sum"
+			header="Сумма операции"
+			sortable
+		>
+			<template #body="slotProps">
+				<span
+					:class="{
+						'text-primary': slotProps.data.type == 'Доход',
+						'text-red-700': slotProps.data.type != 'Доход',
+					}"
+					>{{
+						`${slotProps.data.type == 'Доход' ? '+' : '-'} ${slotProps.data.sum} RUB`
+					}}</span
 				>
-					<div
-						class="flex flex-col sm:flex-row sm:items-center p-6 gap-4"
-						:class="{
-							'border-t border-surface-200 dark:border-surface-700':
-								index !== 0,
-						}"
-					>
-						<div>{{ item.name }}</div>
-						<Chip :label="item.category"></Chip>
-					</div>
+			</template>
+		</Column>
+		<Column
+			field="category"
+			header="Категория"
+		>
+			<template #body="slotProps">
+				<CategoryTag
+					:name="slotProps.data.category"
+					:type="slotProps.data.type"
+				></CategoryTag>
+			</template>
+		</Column>
+		<Column
+			field="depositeId"
+			header="Депозит"
+		>
+			<template #body="slotProps">
+				<div>
+					{{
+						depositeStore.deposites.find(
+							(d) => d.id === slotProps.data.depositeId
+						)?.name
+					}}
 				</div>
-			</div>
+			</template>
+		</Column>
+		<template #empty>
+			<div class="font-bold text-center">Вы пока не тратили</div>
 		</template>
-		<template #empty>Лист пустой</template>
-	</DataView>
+	</DataTable>
 </template>
