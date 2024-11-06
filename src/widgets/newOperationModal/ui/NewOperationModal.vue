@@ -77,6 +77,7 @@ const submit = newOperationModalStore.handleSubmit(async (values) => {
 				<FloatLabel variant="on">
 					<DatePicker
 						v-model="newOperationModalStore.date.value"
+						date-format="dd/mm/yy"
 						showIcon
 						fluid
 						inputId="newoperation__operationDate"

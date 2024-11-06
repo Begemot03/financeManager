@@ -12,6 +12,8 @@ export const useAddOperationStore = defineStore('addOperation', () => {
 	async function addOperation(newOperation: OperationType) {
 		loading.value = true;
 
+		console.log(newOperation)
+
 		try {
 			await testFetching(1500);
 			await operationStore.getOperationList();

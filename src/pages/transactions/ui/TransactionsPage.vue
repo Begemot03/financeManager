@@ -42,6 +42,14 @@ const transactions = computed(() =>
 				header="Название операции"
 			></Column>
 			<Column
+				field="creationDate"
+				header="Дата"
+			>
+				<template #body="slotProps">
+					<span>{{ (slotProps.data.creationDate as Date).toLocaleDateString("ru-RU") }}</span>
+				</template>
+			</Column>
+			<Column
 				field="sum"
 				header="Сумма операции"
 				sortable
