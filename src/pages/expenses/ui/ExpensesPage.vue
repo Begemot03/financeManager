@@ -4,7 +4,8 @@ import type { CategoryType } from '@/entities/category/model/categoryModel';
 import { operationModel } from '@/entities/operation';
 import { OperationSheet } from '@/widgets/operationSheet';
 import { TransactionByCategoryChart } from '@/widgets/transactionByCategoryChart';
-import { computed, ref, watch } from 'vue';
+import { TransactionByDateChart } from '@/widgets/transactionByDateChart';
+import { computed, ref } from 'vue';
 
 const operationStore = operationModel();
 
@@ -32,6 +33,12 @@ const expenses = computed(() =>
 		</div>
 
 		<div class="flex gap-2 flex-col flex-1">
+			<TransactionByDateChart
+				:transactions="expenses"
+				barColor="#7f1d1d"
+				textColor="#fff"
+				seriesName="Траты по дате"
+			/>
 			<TransactionByCategoryChart
 				:transactions="expenses"
 				barColor="#7f1d1d"

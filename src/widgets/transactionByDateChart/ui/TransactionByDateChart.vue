@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue';
 import type { OperationType } from '@/entities/operation';
+import type { ApexOptions } from 'apexcharts';
 
 const props = defineProps<{
 	transactions: OperationType[];
@@ -9,20 +10,21 @@ const props = defineProps<{
 	seriesName: string;
 }>();
 
-const categories = computed(() => [
-	...new Set(props.transactions.map((op) => op.category)),
+const dates = computed(() => [
+	...new Set(props.transactions.map((op) => op.creationDate)),
 ]);
 
 const transactions = computed(() =>
-	categories.value.map((category) =>
-		props.transactions.reduce(
-			(sum, cur) => sum + (cur.category === category ? cur.sum : 0),
+	dates.value.map((date) => ({
+		x: date?.toLocaleDateString('ru-RU'),
+		y: props.transactions.reduce(
+			(sum, cur) => sum + (cur.creationDate === date ? cur.sum : 0),
 			0
-		)
-	)
+		),
+	}))
 );
 
-const chartOptions = computed(() => ({
+const chartOptions = computed<ApexOptions>(() => ({
 	chart: {
 		id: 'transactionByCategory',
 		toolbar: {
@@ -30,7 +32,7 @@ const chartOptions = computed(() => ({
 		},
 	},
 	xaxis: {
-		categories: categories.value,
+		type: 'datetime',
 		labels: {
 			style: {
 				colors: props.textColor,
@@ -50,18 +52,12 @@ const chartOptions = computed(() => ({
 		labels: {
 			style: {
 				colors: props.textColor,
-				fontSize: 18,
 			},
-		},
-	},
-	plotOptions: {
-		bar: {
-			horizontal: true,
 		},
 	},
 }));
 
-const chartSeries = computed<ApexAxisChartSeries>(() => [
+const chartSeries = computed(() => [
 	{
 		color: props.barColor,
 		data: transactions.value,

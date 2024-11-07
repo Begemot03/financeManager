@@ -3,6 +3,8 @@ import { CategoryList } from '@/entities/category';
 import type { CategoryType } from '@/entities/category/model/categoryModel';
 import { operationModel } from '@/entities/operation';
 import { OperationSheet } from '@/widgets/operationSheet';
+import { TransactionByCategoryChart } from '@/widgets/transactionByCategoryChart';
+import { TransactionByDateChart } from '@/widgets/transactionByDateChart';
 import { computed, ref } from 'vue';
 
 const operationStore = operationModel();
@@ -29,6 +31,21 @@ const incomes = computed(() =>
 			</span>
 			<CategoryList v-model:selected="selectedCategories"></CategoryList>
 		</div>
-		<OperationSheet :transactions="incomes"></OperationSheet>
+
+		<div class="flex gap-2 flex-col flex-1">
+			<TransactionByDateChart
+				:transactions="incomes"
+				barColor="#42cdb7"
+				textColor="#fff"
+				seriesName="Доходы по дате"
+			/>
+			<TransactionByCategoryChart
+				:transactions="incomes"
+				barColor="#42cdb7"
+				textColor="#fff"
+				seriesName="Доходы по категориям"
+			/>
+			<OperationSheet :transactions="incomes" />
+		</div>
 	</div>
 </template>
