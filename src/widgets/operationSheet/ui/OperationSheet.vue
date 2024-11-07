@@ -75,7 +75,7 @@ const depositeStore = depositeModel();
 			</template>
 		</Column>
 		<template #empty>
-			<div class="font-bold text-center">Вы пока не тратили</div>
+			<div class="font-bold text-center">Транзакций нет</div>
 		</template>
 	</DataTable>
 </template>

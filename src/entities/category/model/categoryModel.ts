@@ -11,11 +11,11 @@ export const useCategoryStore = defineStore('category', () => {
 	const categories = reactive<CategoryType[]>([
 		{
 			id: uuid(),
-			name: 'Пост',
+			name: 'Еда',
 		},
 		{
 			id: uuid(),
-			name: 'Сумка',
+			name: 'Развлечения',
 		},
 	]);
 

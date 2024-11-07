@@ -27,7 +27,7 @@ export const useOperationStore = defineStore('operationStore', () => {
 			sum: 1000,
 			creationDate: new Date(),
 			currency: Currency.RUB,
-			category: 'Сумка',
+			category: 'Еда',
 		},
 		{
 			id: 1,
@@ -37,7 +37,7 @@ export const useOperationStore = defineStore('operationStore', () => {
 			sum: 100,
 			creationDate: new Date(),
 			currency: Currency.RUB,
-			category: 'Пост',
+			category: 'Развлечения',
 		},
 	]);
 	const loading = ref(false);

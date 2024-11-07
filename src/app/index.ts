@@ -8,6 +8,7 @@ import PrimeVue from 'primevue/config';
 import Aura from '@primevue/themes/aura';
 import Ripple from 'primevue/ripple';
 import ToastService from 'primevue/toastservice';
+import VueApexCharts from 'vue3-apexcharts';
 
 export const app = createApp(App)
 	.use(PrimeVue, {
@@ -18,6 +19,7 @@ export const app = createApp(App)
 	})
 	.use(ToastService)
 	.use(createPinia())
+	.use(VueApexCharts)
 	.use(appRouter);
 
 app.directive('ripple', Ripple);

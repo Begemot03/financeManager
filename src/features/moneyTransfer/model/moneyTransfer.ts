@@ -30,6 +30,7 @@ export const useMoneyTransfer = defineStore('moneyTransfer', () => {
 				sum: newTransfer.sum,
 				category: 'Переводы',
 				currency: Currency.RUB,
+				creationDate: new Date(),
 			});
 
 			operationStore.operations.push({
@@ -40,6 +41,7 @@ export const useMoneyTransfer = defineStore('moneyTransfer', () => {
 				sum: newTransfer.sum,
 				category: 'Переводы',
 				currency: Currency.RUB,
+				creationDate: new Date(),
 			});
 		} catch (e) {
 			console.log(`Error on money transfer: ${e}`);
